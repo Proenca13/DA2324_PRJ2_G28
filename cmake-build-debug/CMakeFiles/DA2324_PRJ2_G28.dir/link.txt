@@ -1,1 +1,1 @@
-/usr/bin/c++ -g CMakeFiles/DA2324_PRJ2_G28.dir/main.cpp.o -o DA2324_PRJ2_G28 
+/usr/bin/c++ -g CMakeFiles/DA2324_PRJ2_G28.dir/main.cpp.o CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Parser.cpp.o -o DA2324_PRJ2_G28 
