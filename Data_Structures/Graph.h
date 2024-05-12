@@ -40,6 +40,8 @@ public:
     void setIndegree(unsigned int indegree);
     void setDist(double dist);
     void setPath(Edge<T> *path);
+    void setLat(double lat);
+    void setLon(double lon);
     Edge<T> * addEdge(Vertex<T> *dest, double w);
     bool removeEdge(T in);
     void removeOutgoingEdges();
@@ -48,14 +50,14 @@ public:
 protected:
     T info;                // info node
     std::vector<Edge<T> *> adj;  // outgoing edges
-
     // auxiliary fields
     bool visited = false; // used by DFS, BFS, Prim ...
     bool processing = false; // used by isDAG (in addition to the visited attribute)
     unsigned int indegree; // used by topsort
     double dist = 0;
     Edge<T> *path = nullptr;
-
+    double lon;
+    double lat;
     std::vector<Edge<T> *> incoming; // incoming edges
 
     int queueIndex = 0; 		// required by MutablePriorityQueue and UFDS
@@ -131,7 +133,8 @@ public:
     bool isDAG() const;
     bool dfsIsDAG(Vertex<T> *v) const;
     std::vector<T> topsort() const;
-protected:
+    void tsp_backtracking(std::vector<int>& path,std::vector<int>& soltuion,double& solution_cost,double current_cost);
+    protected:
     std::vector<Vertex<T> *> vertexSet;    // vertex set
 
     double ** distMatrix = nullptr;   // dist matrix for Floyd-Warshall
@@ -249,7 +252,14 @@ template <class T>
 void Vertex<T>::setInfo(T in) {
     this->info = in;
 }
-
+template <class T>
+void Vertex<T>::setLat(double lat) {
+    this->lat = lat;
+}
+template <class T>
+void Vertex<T>::setLon(double lon) {
+    this->lon = lon;
+}
 template <class T>
 void Vertex<T>::setVisited(bool visited) {
     this->visited = visited;
@@ -335,7 +345,6 @@ template <class T>
 void Edge<T>::setReverse(Edge<T> *reverse) {
     this->reverse = reverse;
 }
-
 template <class T>
 void Edge<T>::setFlow(double flow) {
     this->flow = flow;
@@ -663,6 +672,35 @@ template <class T>
 Graph<T>::~Graph() {
     deleteMatrix(distMatrix, vertexSet.size());
     deleteMatrix(pathMatrix, vertexSet.size());
+}
+template <class T>
+void Graph<T>::tsp_backtracking(std::vector<int>& path,std::vector<int>& solution,double& solution_cost,double current_cost){
+    if(path.size() == vertexSet.size() ){
+        for(auto e : findVertex(path.back())->getAdj()){
+            if(e->getDest()->getInfo() == path.front()){
+                current_cost += e->getWeight();
+                if(current_cost < solution_cost){
+                    solution_cost = current_cost;
+                    solution = path;
+                }
+                break;
+            }
+        }
+        return;
+    }
+    else{
+        for(auto e: findVertex(path.back())->getAdj()){
+            auto v = e->getDest();
+            if(!v->isVisited()){
+                current_cost = current_cost + e->getWeight();
+                path.push_back(v->getInfo());
+                v->setVisited(true);
+                tsp_backtracking(path,solution,solution_cost,current_cost);
+                path.pop_back();
+                v->setVisited(false);
+            }
+        }
+    }
 }
 
 

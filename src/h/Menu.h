@@ -9,8 +9,8 @@
 class Menu {
 public:
     Menu();
-    void  menu_choose_file();
-    void   menu_choose_toy();
+    void menu_choose_file();
+    void menu_choose_toy();
     void Main_Menu();
 private:
     Heuristics heuristics;

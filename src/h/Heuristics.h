@@ -13,6 +13,7 @@ class Heuristics {
 public:
     Heuristics();
     Heuristics(string filepath);
+    Heuristics(string edgespath,string nodespath);
     void backtracking_algorithm();
 private:
     Parser parser;

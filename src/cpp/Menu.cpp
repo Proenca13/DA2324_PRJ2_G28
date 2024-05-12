@@ -8,7 +8,7 @@ using namespace std;
 Menu::Menu() {};
 void  Menu::menu_choose_file() {
     int c = true;
-    string parsing;
+    string nodesfile,edgesfile;
     while (c){
         cout << "---------------------------------------------" << endl;
         cout << "|Select a parsing option                    |" << endl;
@@ -25,9 +25,19 @@ void  Menu::menu_choose_file() {
             case 1:
                 menu_choose_toy();
                 break;
+            case 2:
+                cout << "Please enter the number of edges: ";
+                int number_edges;
+                cin >> number_edges;
+                nodesfile = "../Extra_Fully_Connected_Graphs/nodes.csv";
+                edgesfile = "../Extra_Fully_Connected_Graphs/edges_" + to_string(number_edges) + ".csv";
+                c = false;
+                break;
             case 4:
-                cout << "Please enter the file path: ";
-                getline(cin>>ws,parsing);
+                cout << "Please enter the nodes file path: ";
+                getline(cin>>ws,nodesfile);
+                cout << "Please enter the edges file path: ";
+                getline(cin>>ws,edgesfile);
                 c = false;
                 break;
             case 5:
@@ -37,7 +47,7 @@ void  Menu::menu_choose_file() {
                 break;
         }
     }
-    Heuristics heuristics(parsing);
+    Heuristics heuristics(edgesfile,nodesfile);
     this->heuristics = heuristics;
     Main_Menu();
 }
@@ -81,6 +91,7 @@ void Menu::menu_choose_toy() {
     this->heuristics = heuristics;
     Main_Menu();
 }
+
 void Menu::Main_Menu() {
     int c = true;
     while (c){

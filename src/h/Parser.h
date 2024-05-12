@@ -3,11 +3,12 @@
 
 #include <string>
 #include "../../Data_Structures/Graph.h"
+using namespace std;
 class Parser {
 public:
     Parser();
-    Graph<int> loadToyGraph(const std::string& filePath);
-    Graph<int> loadRealWordGraph(const std::string& filePath);
+    Graph<int> loadToyGraph(string& filePath);
+    Graph<int> loadRealWordGraph(string& edgesPath,string& nodesPath);
 };
 
 
