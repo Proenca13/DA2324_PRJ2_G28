@@ -5,8 +5,8 @@
 #include "../h/Menu.h"
 #include <iostream>
 using namespace std;
-Menu::Menu() = default;
-void Menu::menu_choose_file() {
+Menu::Menu() {};
+void  Menu::menu_choose_file() {
     int c = true;
     string parsing;
     while (c){
@@ -31,14 +31,15 @@ void Menu::menu_choose_file() {
                 c = false;
                 break;
             case 5:
-                c = false;
-                break;
+                return;
             default:
                 cout << "Invalid Input!\n";
                 break;
         }
     }
     Heuristics heuristics(parsing);
+    this->heuristics = heuristics;
+    Main_Menu();
 }
 
 void Menu::menu_choose_toy() {
@@ -77,4 +78,39 @@ void Menu::menu_choose_toy() {
         }
     }
     Heuristics heuristics(parsing);
+    this->heuristics = heuristics;
+    Main_Menu();
+}
+void Menu::Main_Menu() {
+    int c = true;
+    while (c){
+        cout << "---------------------------------------------" << endl;
+        cout << "|Welcome to the Main Menu!                  |" << endl;
+        cout << "|1. Backtracking Algorithm                  |" << endl;
+        cout << "|2. Triangular Approximation Heuristic      |" << endl;
+        cout << "|3. Other Heuristics                        |" << endl;
+        cout << "|4. TSP in the Real World                   |" << endl;
+        cout << "|5. Exit                                    |" << endl;
+        cout << "---------------------------------------------" << endl;
+        cout << "Choose an option: ";
+        int option;
+        cin >> option;
+        switch (option) {
+            case 1:
+                heuristics.backtracking_algorithm();
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                c = false;
+                break;
+            default:
+                cout << "Invalid Input!\n";
+                break;
+        }
+    }
 }

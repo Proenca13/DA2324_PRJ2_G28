@@ -11,7 +11,9 @@ using namespace std;
 
 class Heuristics {
 public:
+    Heuristics();
     Heuristics(string filepath);
+    void backtracking_algorithm();
 private:
     Parser parser;
     Graph<int> graph;
