@@ -88,6 +88,12 @@
 		<Unit filename="/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/main.cpp">
 			<Option target="DA2324_PRJ2_G28"/>
 		</Unit>
+		<Unit filename="/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/src/cpp/Heuristics.cpp">
+			<Option target="DA2324_PRJ2_G28"/>
+		</Unit>
+		<Unit filename="/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/src/cpp/Menu.cpp">
+			<Option target="DA2324_PRJ2_G28"/>
+		</Unit>
 		<Unit filename="/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/src/cpp/Parser.cpp">
 			<Option target="DA2324_PRJ2_G28"/>
 		</Unit>

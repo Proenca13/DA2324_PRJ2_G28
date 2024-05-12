@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 using namespace std;
+Parser::Parser() {};
 Graph<int> Parser::loadToyGraph(const std::string &filePath) {
     ifstream in;
     in.open(filePath);
@@ -22,10 +23,10 @@ Graph<int> Parser::loadToyGraph(const std::string &filePath) {
         ss.ignore(1);
         ss >> distancia;
         ss.ignore(1);
-        if(graph.findVertex(origem)!= nullptr){
+        if(graph.findVertex(origem)== nullptr){
             graph.addVertex(origem);
         }
-        if(graph.findVertex(destino)!= nullptr){
+        if(graph.findVertex(destino)== nullptr){
             graph.addVertex(destino);
         }
         graph.addBidirectionalEdge(origem,destino,distancia);

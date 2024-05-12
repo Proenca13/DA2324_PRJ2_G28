@@ -153,6 +153,54 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA2324_PRJ2_G28.dir/build.make CMakeFiles/DA2324_PRJ2_G28.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/cpp/Heuristics.o: src/cpp/Heuristics.cpp.o
+.PHONY : src/cpp/Heuristics.o
+
+# target to build an object file
+src/cpp/Heuristics.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA2324_PRJ2_G28.dir/build.make CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.o
+.PHONY : src/cpp/Heuristics.cpp.o
+
+src/cpp/Heuristics.i: src/cpp/Heuristics.cpp.i
+.PHONY : src/cpp/Heuristics.i
+
+# target to preprocess a source file
+src/cpp/Heuristics.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA2324_PRJ2_G28.dir/build.make CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.i
+.PHONY : src/cpp/Heuristics.cpp.i
+
+src/cpp/Heuristics.s: src/cpp/Heuristics.cpp.s
+.PHONY : src/cpp/Heuristics.s
+
+# target to generate assembly for a file
+src/cpp/Heuristics.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA2324_PRJ2_G28.dir/build.make CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.s
+.PHONY : src/cpp/Heuristics.cpp.s
+
+src/cpp/Menu.o: src/cpp/Menu.cpp.o
+.PHONY : src/cpp/Menu.o
+
+# target to build an object file
+src/cpp/Menu.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA2324_PRJ2_G28.dir/build.make CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.o
+.PHONY : src/cpp/Menu.cpp.o
+
+src/cpp/Menu.i: src/cpp/Menu.cpp.i
+.PHONY : src/cpp/Menu.i
+
+# target to preprocess a source file
+src/cpp/Menu.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA2324_PRJ2_G28.dir/build.make CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.i
+.PHONY : src/cpp/Menu.cpp.i
+
+src/cpp/Menu.s: src/cpp/Menu.cpp.s
+.PHONY : src/cpp/Menu.s
+
+# target to generate assembly for a file
+src/cpp/Menu.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA2324_PRJ2_G28.dir/build.make CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.s
+.PHONY : src/cpp/Menu.cpp.s
+
 src/cpp/Parser.o: src/cpp/Parser.cpp.o
 .PHONY : src/cpp/Parser.o
 
@@ -189,6 +237,12 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/cpp/Heuristics.o"
+	@echo "... src/cpp/Heuristics.i"
+	@echo "... src/cpp/Heuristics.s"
+	@echo "... src/cpp/Menu.o"
+	@echo "... src/cpp/Menu.i"
+	@echo "... src/cpp/Menu.s"
 	@echo "... src/cpp/Parser.o"
 	@echo "... src/cpp/Parser.i"
 	@echo "... src/cpp/Parser.s"

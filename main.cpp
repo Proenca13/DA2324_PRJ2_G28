@@ -1,6 +1,6 @@
 #include <iostream>
-
+#include "src/h/Menu.h"
 int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
+    Menu menu;
+    menu.menu_choose_file();
 }

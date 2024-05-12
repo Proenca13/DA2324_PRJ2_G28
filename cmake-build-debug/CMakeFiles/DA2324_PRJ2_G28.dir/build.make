@@ -97,19 +97,51 @@ CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Parser.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/src/cpp/Parser.cpp" -o CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Parser.cpp.s
 
+CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.o: CMakeFiles/DA2324_PRJ2_G28.dir/flags.make
+CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.o: /home/joao/Desktop/Desenho\ de\ Algortimos/DA2324_PRJ2_G28/src/cpp/Menu.cpp
+CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.o: CMakeFiles/DA2324_PRJ2_G28.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.o -MF CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.o.d -o CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.o -c "/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/src/cpp/Menu.cpp"
+
+CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/src/cpp/Menu.cpp" > CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.i
+
+CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/src/cpp/Menu.cpp" -o CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.s
+
+CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.o: CMakeFiles/DA2324_PRJ2_G28.dir/flags.make
+CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.o: /home/joao/Desktop/Desenho\ de\ Algortimos/DA2324_PRJ2_G28/src/cpp/Heuristics.cpp
+CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.o: CMakeFiles/DA2324_PRJ2_G28.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.o -MF CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.o.d -o CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.o -c "/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/src/cpp/Heuristics.cpp"
+
+CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/src/cpp/Heuristics.cpp" > CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.i
+
+CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/src/cpp/Heuristics.cpp" -o CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.s
+
 # Object files for target DA2324_PRJ2_G28
 DA2324_PRJ2_G28_OBJECTS = \
 "CMakeFiles/DA2324_PRJ2_G28.dir/main.cpp.o" \
-"CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Parser.cpp.o"
+"CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Parser.cpp.o" \
+"CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.o" \
+"CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.o"
 
 # External object files for target DA2324_PRJ2_G28
 DA2324_PRJ2_G28_EXTERNAL_OBJECTS =
 
 DA2324_PRJ2_G28: CMakeFiles/DA2324_PRJ2_G28.dir/main.cpp.o
 DA2324_PRJ2_G28: CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Parser.cpp.o
+DA2324_PRJ2_G28: CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Menu.cpp.o
+DA2324_PRJ2_G28: CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Heuristics.cpp.o
 DA2324_PRJ2_G28: CMakeFiles/DA2324_PRJ2_G28.dir/build.make
 DA2324_PRJ2_G28: CMakeFiles/DA2324_PRJ2_G28.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable DA2324_PRJ2_G28"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable DA2324_PRJ2_G28"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/DA2324_PRJ2_G28.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
