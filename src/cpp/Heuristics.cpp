@@ -16,12 +16,15 @@ void Heuristics::backtracking_algorithm() {
     vector<int> path,solution;
     double solution_cost;
     double current_cost = 0;
+    for (auto& vertex : graph.getVertexSet()) {
+        vertex->setVisited(false);
+    }
     auto vertex = graph.findVertex(0);
     solution_cost = INF;
     path.push_back(vertex->getInfo());
-    graph.findVertex(0)->setVisited(true);
+    vertex->setVisited(true);
     auto start = std::chrono::high_resolution_clock::now();
-    graph.tsp_backtracking(path,solution,solution_cost,current_cost);
+    graph.tsp_backtracking(path,solution,solution_cost ,current_cost);
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
     for(auto v : solution){

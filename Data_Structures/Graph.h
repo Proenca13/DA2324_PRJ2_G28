@@ -674,12 +674,12 @@ Graph<T>::~Graph() {
     deleteMatrix(pathMatrix, vertexSet.size());
 }
 template <class T>
-void Graph<T>::tsp_backtracking(std::vector<int>& path,std::vector<int>& solution,double& solution_cost,double current_cost){
-    if(path.size() == vertexSet.size() ){
-        for(auto e : findVertex(path.back())->getAdj()){
-            if(e->getDest()->getInfo() == path.front()){
+void Graph<T>::tsp_backtracking(std::vector<int>& path, std::vector<int>& solution, double& solution_cost, double current_cost) {
+    if (path.size() == vertexSet.size()) {
+        for (auto e : findVertex(path.back())->getAdj()) {
+            if (e->getDest()->getInfo() == path.front()) {
                 current_cost += e->getWeight();
-                if(current_cost < solution_cost){
+                if (current_cost < solution_cost) {
                     solution_cost = current_cost;
                     solution = path;
                 }
@@ -688,20 +688,22 @@ void Graph<T>::tsp_backtracking(std::vector<int>& path,std::vector<int>& solutio
         }
         return;
     }
-    else{
-        for(auto e: findVertex(path.back())->getAdj()){
+    else {
+        for (auto e : findVertex(path.back())->getAdj()) {
             auto v = e->getDest();
-            if(!v->isVisited()){
-                current_cost = current_cost + e->getWeight();
+            if (!v->isVisited()) {
+                current_cost += e->getWeight();
                 path.push_back(v->getInfo());
                 v->setVisited(true);
-                tsp_backtracking(path,solution,solution_cost,current_cost);
+                tsp_backtracking(path, solution, solution_cost, current_cost);
                 path.pop_back();
                 v->setVisited(false);
+                current_cost -= e->getWeight();
             }
         }
     }
 }
+
 
 
 
