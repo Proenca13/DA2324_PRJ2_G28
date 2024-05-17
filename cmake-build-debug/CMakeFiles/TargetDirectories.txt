@@ -1,3 +1,0 @@
-/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/cmake-build-debug/CMakeFiles/DA2324_PRJ2_G28.dir
-/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/joao/Desktop/Desenho de Algortimos/DA2324_PRJ2_G28/cmake-build-debug/CMakeFiles/rebuild_cache.dir
