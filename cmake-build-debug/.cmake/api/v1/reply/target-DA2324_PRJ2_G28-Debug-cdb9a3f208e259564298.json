@@ -52,7 +52,8 @@
 				0,
 				2,
 				4,
-				5
+				5,
+				6
 			]
 		}
 	],
@@ -88,7 +89,8 @@
 				0,
 				2,
 				4,
-				5
+				5,
+				6
 			]
 		},
 		{
@@ -134,6 +136,12 @@
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
 			"path" : "src/cpp/Heuristics.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "src/cpp/utils.cpp",
 			"sourceGroupIndex" : 0
 		}
 	],

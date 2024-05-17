@@ -10,6 +10,7 @@
 #include <queue>
 #include <limits>
 #include <algorithm>
+#include "../src/h/utils.h"
 #include "../Data_Structures/MutablePriorityQueue.h"
 
 template <class T>
@@ -27,11 +28,14 @@ public:
 
     T getInfo() const;
     std::vector<Edge<T> *> getAdj() const;
+    std::vector<Edge<T> *> getMstAdj() const;
     bool isVisited() const;
     bool isProcessing() const;
     unsigned int getIndegree() const;
     double getDist() const;
     Edge<T> *getPath() const;
+    double getLat();
+    double getLon();
     std::vector<Edge<T> *> getIncoming() const;
 
     void setInfo(T info);
@@ -43,6 +47,7 @@ public:
     void setLat(double lat);
     void setLon(double lon);
     Edge<T> * addEdge(Vertex<T> *dest, double w);
+    Edge<T>* addMstEdge(Vertex *d, double distance);
     bool removeEdge(T in);
     void removeOutgoingEdges();
 
@@ -50,6 +55,7 @@ public:
 protected:
     T info;                // info node
     std::vector<Edge<T> *> adj;  // outgoing edges
+    std::vector<Edge<T> *> Mstadj;
     // auxiliary fields
     bool visited = false; // used by DFS, BFS, Prim ...
     bool processing = false; // used by isDAG (in addition to the visited attribute)
@@ -121,6 +127,7 @@ public:
     bool addEdge(const T &sourc, const T &dest, double w);
     bool removeEdge(const T &source, const T &dest);
     bool addBidirectionalEdge(const T &sourc, const T &dest, double w);
+    void updateMst(Vertex<T>* v1,Vertex<T>* v2);
 
     int getNumVertex() const;
     std::vector<Vertex<T> *> getVertexSet() const;
@@ -134,6 +141,9 @@ public:
     bool dfsIsDAG(Vertex<T> *v) const;
     std::vector<T> topsort() const;
     void tsp_backtracking(std::vector<int>& path,std::vector<int>& soltuion,double& solution_cost,double current_cost);
+    double triangularApproximation(std::queue<Vertex<T>*> &path);
+    void prim();
+    void preorderTraversal(Vertex<T> *v, std::queue<Vertex<T> *> &path);
     protected:
     std::vector<Vertex<T> *> vertexSet;    // vertex set
 
@@ -165,7 +175,12 @@ Edge<T> * Vertex<T>::addEdge(Vertex<T> *d, double w) {
     d->incoming.push_back(newEdge);
     return newEdge;
 }
-
+template <class T>
+Edge<T> * Vertex<T>::addMstEdge(Vertex<T> *d, double distance) {
+    auto newEdge = new Edge<T>(this, d, distance);
+    Mstadj.push_back(newEdge);
+    return newEdge;
+}
 /*
  * Auxiliary function to remove an outgoing edge (with a given destination (d))
  * from a vertex (this).
@@ -212,10 +227,21 @@ template <class T>
 T Vertex<T>::getInfo() const {
     return this->info;
 }
-
+template <class T>
+double Vertex<T>::getLat() {
+    return this->lat;
+}
+template <class T>
+double Vertex<T>::getLon() {
+    return this->lon;
+}
 template <class T>
 std::vector<Edge<T>*> Vertex<T>::getAdj() const {
     return this->adj;
+}
+template <class T>
+std::vector<Edge<T>*> Vertex<T>::getMstAdj() const {
+    return this->Mstadj;
 }
 
 template <class T>
@@ -704,26 +730,32 @@ void Graph<T>::tsp_backtracking(std::vector<int>& path, std::vector<int>& soluti
     }
 }
 template <class T>
-std::vector<Edge<T>*> prim(Graph<T> *g) {
-    if (g->getVertexSet().empty()) {
-        return {};
+void Graph<T>::updateMst(Vertex<T>* v1,Vertex<T>* v2){
+    auto e1 = v1->addMstEdge(v2, v1->getPath()->getWeight());
+    auto e2 = v2->addMstEdge(v1, v1->getPath()->getWeight());
+    e1->setReverse(e2);
+    e2->setReverse(e1);
+}
+template <class T>
+void Graph<T>::prim() {
+    if (getVertexSet().empty()) {
+        return ;
     }
-    for (auto v : g->getVertexSet()) {
+    for (auto v : getVertexSet()) {
         v->setDist(INF);
         v->setPath(nullptr);
         v->setVisited(false);
     }
 
-    Vertex<T>* s = g->getVertexSet().front();
+    Vertex<T>* s = getVertexSet().front();
     s->setDist(0);
     MutablePriorityQueue<Vertex<T>> q;
     q.insert(s);
-    std::vector<Edge<T>*> mstEdges;
     while (!q.empty()) {
         auto v = q.extractMin();
         v->setVisited(true);
         if (v->getPath() != nullptr) {
-            mstEdges.push_back(v->getPath());
+            updateMst(v,v->getPath()->getOrig());
         }
         for (auto &e : v->getAdj()) {
             Vertex<T>* w = e->getDest();
@@ -741,19 +773,43 @@ std::vector<Edge<T>*> prim(Graph<T> *g) {
             }
         }
     }
-    return mstEdges;
 }
 template <class T>
-void preorderTraversal(Vertex<T> *v, std::vector<Vertex<T>*> &path) {
+void Graph<T>::preorderTraversal(Vertex<T> *v, std::queue<Vertex<T> *> &path) {
     if (v == nullptr) return;
-    path.push_back(v);
+    path.push(v);
     v->setVisited(true);
-    for (auto &e : v->getAdj()) {
+    for (auto &e : v->getMstAdj()) {
         Vertex<T>* w = e->getDest();
         if (!w->isVisited()) {
             preorderTraversal(w, path);
         }
     }
+}
+template <class T>
+double Graph<T>::triangularApproximation(std::queue<Vertex<T>*> &path) {
+    double dist = 0.0;
+    if (getVertexSet().empty()) {
+        return dist;
+    }
+    prim();
+    for (auto& vertex : getVertexSet()) {
+        vertex->setVisited(false);
+    }
+    auto v = findVertex(0);
+    preorderTraversal(v,path);
+    path.push(v);
+    std::queue<Vertex<T>*> temp_path = path;
+    Vertex<T>* prev = temp_path.front() ;
+    Vertex<T>* current = temp_path.front();
+    while (!temp_path.empty()) {
+        dist += Haversine(prev->getLat(),prev->getLon(), current->getLat(),current->getLon());
+        prev = current;
+        temp_path.pop();
+        current = temp_path.front();
+    }
+    return dist;
+
 }
 
 

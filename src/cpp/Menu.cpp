@@ -111,6 +111,7 @@ void Menu::Main_Menu() {
                 heuristics.backtracking_algorithm();
                 break;
             case 2:
+                heuristics.triangular_approximation_heuristic();
                 break;
             case 3:
                 break;

@@ -225,6 +225,30 @@ src/cpp/Parser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA2324_PRJ2_G28.dir/build.make CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/Parser.cpp.s
 .PHONY : src/cpp/Parser.cpp.s
 
+src/cpp/utils.o: src/cpp/utils.cpp.o
+.PHONY : src/cpp/utils.o
+
+# target to build an object file
+src/cpp/utils.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA2324_PRJ2_G28.dir/build.make CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/utils.cpp.o
+.PHONY : src/cpp/utils.cpp.o
+
+src/cpp/utils.i: src/cpp/utils.cpp.i
+.PHONY : src/cpp/utils.i
+
+# target to preprocess a source file
+src/cpp/utils.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA2324_PRJ2_G28.dir/build.make CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/utils.cpp.i
+.PHONY : src/cpp/utils.cpp.i
+
+src/cpp/utils.s: src/cpp/utils.cpp.s
+.PHONY : src/cpp/utils.s
+
+# target to generate assembly for a file
+src/cpp/utils.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/DA2324_PRJ2_G28.dir/build.make CMakeFiles/DA2324_PRJ2_G28.dir/src/cpp/utils.cpp.s
+.PHONY : src/cpp/utils.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -246,6 +270,9 @@ help:
 	@echo "... src/cpp/Parser.o"
 	@echo "... src/cpp/Parser.i"
 	@echo "... src/cpp/Parser.s"
+	@echo "... src/cpp/utils.o"
+	@echo "... src/cpp/utils.i"
+	@echo "... src/cpp/utils.s"
 .PHONY : help
 
 

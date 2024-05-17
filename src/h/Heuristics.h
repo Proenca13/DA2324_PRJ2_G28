@@ -15,6 +15,7 @@ public:
     Heuristics(string filepath);
     Heuristics(string edgespath,string nodespath);
     void backtracking_algorithm();
+    void triangular_approximation_heuristic();
 private:
     Parser parser;
     Graph<int> graph;

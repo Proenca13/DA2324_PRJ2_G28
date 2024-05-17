@@ -34,3 +34,23 @@ void Heuristics::backtracking_algorithm() {
     cout << "The cost is: " << solution_cost << endl;
     cout << "Elapsed time: " << duration.count() << " ms" << endl;
 }
+
+void Heuristics::triangular_approximation_heuristic() {
+    for (auto& vertex : graph.getVertexSet()) {
+        vertex->setVisited(false);
+    }
+    std::queue<Vertex<int>*> path;
+    auto start = std::chrono::high_resolution_clock::now();
+    double dist = graph.triangularApproximation(path);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    while (!path.empty()){
+        cout << path.front()->getInfo() << "->" ;
+        path.pop();
+    }
+    cout << "\nThe cost is: " << dist << endl;
+    cout << "Elapsed time: " << duration.count() << " ms" << endl;
+
+
+
+}
