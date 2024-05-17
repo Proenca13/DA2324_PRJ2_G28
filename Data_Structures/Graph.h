@@ -703,7 +703,58 @@ void Graph<T>::tsp_backtracking(std::vector<int>& path, std::vector<int>& soluti
         }
     }
 }
+template <class T>
+std::vector<Edge<T>*> prim(Graph<T> *g) {
+    if (g->getVertexSet().empty()) {
+        return {};
+    }
+    for (auto v : g->getVertexSet()) {
+        v->setDist(INF);
+        v->setPath(nullptr);
+        v->setVisited(false);
+    }
 
+    Vertex<T>* s = g->getVertexSet().front();
+    s->setDist(0);
+    MutablePriorityQueue<Vertex<T>> q;
+    q.insert(s);
+    std::vector<Edge<T>*> mstEdges;
+    while (!q.empty()) {
+        auto v = q.extractMin();
+        v->setVisited(true);
+        if (v->getPath() != nullptr) {
+            mstEdges.push_back(v->getPath());
+        }
+        for (auto &e : v->getAdj()) {
+            Vertex<T>* w = e->getDest();
+            if (!w->isVisited()) {
+                auto oldDist = w->getDist();
+                if (e->getWeight() < oldDist) {
+                    w->setDist(e->getWeight());
+                    w->setPath(e);
+                    if (oldDist == INF) {
+                        q.insert(w);
+                    } else {
+                        q.decreaseKey(w);
+                    }
+                }
+            }
+        }
+    }
+    return mstEdges;
+}
+template <class T>
+void preorderTraversal(Vertex<T> *v, std::vector<Vertex<T>*> &path) {
+    if (v == nullptr) return;
+    path.push_back(v);
+    v->setVisited(true);
+    for (auto &e : v->getAdj()) {
+        Vertex<T>* w = e->getDest();
+        if (!w->isVisited()) {
+            preorderTraversal(w, path);
+        }
+    }
+}
 
 
 
