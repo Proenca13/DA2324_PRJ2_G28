@@ -13,7 +13,7 @@ class Heuristics {
 public:
     Heuristics();
     Heuristics(string filepath);
-    Heuristics(string edgespath,string nodespath);
+    Heuristics(string edgespath,string nodespath,bool is_real);
     void backtracking_algorithm();
     void triangular_approximation_heuristic();
     void other_heuristic();

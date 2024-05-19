@@ -11,6 +11,7 @@ Menu::Menu() {};
 void  Menu::menu_choose_file() {
     int c = true;
     string nodesfile,edgesfile;
+    bool is_real;
     while (c){
         cout << "---------------------------------------------" << endl;
         cout << "|Select a parsing option                    |" << endl;
@@ -34,6 +35,7 @@ void  Menu::menu_choose_file() {
                 nodesfile = "../Extra_Fully_Connected_Graphs/nodes.csv";
                 edgesfile = "../Extra_Fully_Connected_Graphs/edges_" + to_string(number_edges) + ".csv";
                 c = false;
+                is_real = false;
                 break;
             case 3:
                 cout << "Please enter the number of the graph (from 1 to 3): ";
@@ -42,12 +44,14 @@ void  Menu::menu_choose_file() {
                 nodesfile = "../Real_World_Graphs/graph" + to_string(number_graph) + "/nodes.csv";
                 edgesfile = "../Real_World_Graphs/graph" + to_string(number_graph) + "/edges.csv";
                 c = false;
+                is_real = true;
                 break;
             case 4:
                 cout << "Please enter the nodes file path: ";
                 getline(cin>>ws,nodesfile);
                 cout << "Please enter the edges file path: ";
                 getline(cin>>ws,edgesfile);
+                is_real = true;
                 c = false;
                 break;
             case 5:
@@ -58,7 +62,7 @@ void  Menu::menu_choose_file() {
         }
     }
     auto start = std::chrono::high_resolution_clock::now();
-    Heuristics heuristics(edgesfile,nodesfile);
+    Heuristics heuristics(edgesfile,nodesfile, is_real);
     this->heuristics = heuristics;
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);

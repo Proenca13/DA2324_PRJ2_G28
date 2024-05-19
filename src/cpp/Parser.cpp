@@ -35,6 +35,51 @@ Graph<int> Parser::loadToyGraph(string &filePath) {
     }
     return graph;
 }
+Graph<int> Parser::loadExtraGraph(string& edgesPath, string& nodesPath){
+    ifstream nodes,edges;
+    std::unordered_map<int ,Vertex<int>*,Vertex<int>::VertexHash> vertexhash;
+    nodes.open(nodesPath);
+    edges.open(edgesPath);
+    Graph<int> graph;
+    string line;
+    if (!nodes.is_open() or !edges.is_open()){
+        cout << "File not found!"<<'\n';
+    }
+    getline(nodes, line);
+    getline(edges,line);
+    while (getline(edges, line)) {
+        stringstream ss(line);
+        int origem,destino;
+        double distancia;
+        ss >> origem;
+        ss.ignore(1);
+        ss >> destino;
+        ss.ignore(1);
+        ss >> distancia;
+        ss.ignore(1);
+        vertexhash.insert({origem,new Vertex<int>(origem)});
+        graph.addVertex(origem);
+        vertexhash.insert({destino,new Vertex<int>(destino)});
+        graph.addVertex(destino);
+        vertexhash[origem]->addEdge(vertexhash[destino],distancia);
+        vertexhash[destino]->addEdge(vertexhash[origem],distancia);
+    }
+    for (int i = 0; i < vertexhash.size(); i++){
+        getline(nodes, line);
+        stringstream ss(line);
+        int id;
+        double lon,lat;
+        ss >> id;
+        ss.ignore(1);
+        ss >> lon;
+        ss.ignore(1);
+        ss >> lat;
+        ss.ignore(1);
+        graph.findVertex(id)->setLat(lat);
+        graph.findVertex(id)->setLon(lon);
+    }
+    return graph;
+}
 Graph<int> Parser::loadRealWordGraph(string& edgesPath,string& nodesPath){
     ifstream nodes,edges;
     std::unordered_map<int ,Vertex<int>*,Vertex<int>::VertexHash> vertexhash;
@@ -73,12 +118,6 @@ Graph<int> Parser::loadRealWordGraph(string& edgesPath,string& nodesPath){
         ss.ignore(1);
         ss >> distancia;
         ss.ignore(1);
-        if(vertexhash[origem]== nullptr){
-            graph.addVertex(origem);
-        }
-        if(vertexhash[destino] == nullptr){
-            graph.addVertex(destino);
-        }
         vertexhash[origem]->addEdge(vertexhash[destino],distancia);
         vertexhash[destino]->addEdge(vertexhash[origem],distancia);
     }

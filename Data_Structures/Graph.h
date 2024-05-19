@@ -39,12 +39,14 @@ public:
     struct VertexHash {
         int operator()(int vertex) const {
             int v = 0;
-            while (vertex > 0) {
-                int digit = vertex % 10;
-                v = (v * 53) + digit;
-                vertex = vertex / 10;
-            };
+            while (vertex > 0){
+                v = (v * 53) + vertex % 10;
+                vertex /= 10;
+            }
             return v;
+        }
+        bool operator()(const int& vertex1,const int& vertex2) const{
+            return vertex1==vertex2;
         }
     };
     std::vector<Edge<T> *> getIncoming() const;

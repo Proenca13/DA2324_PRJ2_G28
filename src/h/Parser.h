@@ -9,6 +9,9 @@ public:
     Parser();
     Graph<int> loadToyGraph(string& filePath);
     Graph<int> loadRealWordGraph(string& edgesPath,string& nodesPath);
+
+
+    Graph<int> loadExtraGraph(string &edgesPath, string &nodesPath);
 };
 
 

@@ -9,8 +9,9 @@ Heuristics::Heuristics() {}
 Heuristics::Heuristics(string filepath) {
     graph = this->parser.loadToyGraph(filepath);
 }
-Heuristics::Heuristics(string edgespath,string nodespath){
-    graph = this->parser.loadRealWordGraph(edgespath,nodespath);
+Heuristics::Heuristics(string edgespath,string nodespath, bool is_real){
+    if (is_real) graph = this->parser.loadRealWordGraph(edgespath,nodespath);
+    else graph = this->parser.loadExtraGraph(edgespath,nodespath);
 }
 void Heuristics::backtracking_algorithm() {
     vector<int> path,solution;
