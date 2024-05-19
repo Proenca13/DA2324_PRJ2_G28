@@ -111,7 +111,7 @@ void Menu::menu_choose_toy() {
 }
 
 void Menu::Main_Menu() {
-    int c = true;
+    int c = false;
     while (c){
         cout << "---------------------------------------------" << endl;
         cout << "|Welcome to the Main Menu!                  |" << endl;
@@ -143,5 +143,8 @@ void Menu::Main_Menu() {
                 cout << "Invalid Input!\n";
                 break;
         }
+    }
+    for (auto a:heuristics.odds()){
+        cout << a->getInfo() << " --- "<< a->getIndegree() << endl;
     }
 }

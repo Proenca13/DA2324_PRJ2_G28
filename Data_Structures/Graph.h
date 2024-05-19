@@ -157,6 +157,7 @@ public:
     double triangularApproximation(std::queue<Vertex<T>*> &path);
     void nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distancia);
     void prim();
+    std::vector<Vertex<T>*> mwm();
     void preorderTraversal(Vertex<T> *v, std::queue<Vertex<T> *> &path);
     protected:
 
@@ -167,6 +168,7 @@ public:
      * Finds the index of the vertex with a given content.
      */
     int findVertexIdx(const T &in) const;
+
 };
 
 void deleteMatrix(int **m, int n);
@@ -881,6 +883,24 @@ double Graph<T>::triangularApproximation(std::queue<Vertex<T>*> &path) {
  * @param path Vector to store the vertices in the order of the TSP path.
  * @param distancia Reference to a variable to store the total distance of the TSP path.
  */
+template <class T>
+std::vector<Vertex<T>*> Graph<T>::mwm(){
+    std::vector<Vertex<T>*> odds;
+    if (getVertexSet().empty()) {
+        return odds;
+    }
+    prim();
+    for (auto& vertex : getVertexSet()) {
+        vertex->setVisited(false);
+        for (auto &e: vertex->getMstAdj()){
+            e->getDest()->setIndegree(e->getDest()->getIndegree() + 1);
+        }
+    }
+    for(auto& vertex : getVertexSet()){
+        if (vertex->getIndegree() % 2 != 0) odds.push_back(vertex);
+    }
+    return odds;
+}
 template <class T>
 void Graph<T>::nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distancia) {
     distancia = 0;

@@ -79,3 +79,7 @@ void Heuristics::other_heuristic() {
     cout << "\nThe cost is: " << dist << endl;
     cout << "Elapsed time: " << duration.count() << " ms" << endl;
 }
+
+std::vector<Vertex<int>*> Heuristics::odds(){
+    return graph.mwm();
+}

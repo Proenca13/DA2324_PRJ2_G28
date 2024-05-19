@@ -42,6 +42,7 @@ public:
      * Prints the path, its distance, and the execution time.
      */
     void other_heuristic();
+    vector<Vertex<int> *> odds();
 private:
     Parser parser;
     Graph<int> graph;
