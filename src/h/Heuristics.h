@@ -42,6 +42,16 @@ public:
      * Prints the path, its distance, and the execution time.
      */
     void other_heuristic();
+    /**
+     * @brief Applies the Christofides TSP heuristic starting from a specified vertex.
+     *
+     * This function applies the Christofides TSP heuristic starting from the vertex
+     * specified by the `start` parameter in the graph. It returns a vector containing
+     * the vertices in the order of the tour found by the heuristic.
+     *
+     * @param start The starting vertex for the TSP heuristic.
+     * @return A vector of vertices representing the TSP tour found.
+     */
     vector<Vertex<int> *> TSP_in_the_Real_World(int start);
 private:
     Parser parser;
