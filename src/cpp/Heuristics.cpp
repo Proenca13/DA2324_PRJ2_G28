@@ -80,6 +80,8 @@ void Heuristics::other_heuristic() {
     cout << "Elapsed time: " << duration.count() << " ms" << endl;
 }
 
-std::vector<Vertex<int>*> Heuristics::odds(){
-    return graph.getOdds();
+std::vector<Vertex<int>*> Heuristics::TSP_in_the_Real_World(int start) {
+    vector<Vertex<int> *> tour;
+    auto v = graph.findVertex(start);
+    graph.christofidesTSP(v);
 }

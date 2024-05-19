@@ -159,9 +159,12 @@ public:
     double triangularApproximation(std::queue<Vertex<T>*> &path);
     void nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distancia);
     void prim();
+    double christofidesTSP(Vertex<T>* v);
     std::vector<Vertex<T> *> getOdds();
     void preorderTraversal(Vertex<T> *v, std::queue<Vertex<T> *> &path);
     void eulerianPath( std::queue<Vertex<T> *> &path,Vertex<T>* v);
+    std::vector<Vertex<T> *>hamiltonian_cycle(std::queue<Vertex<T>*> path);
+    void mwm();
     protected:
 
     double ** distMatrix = nullptr;   // dist matrix for Floyd-Warshall
@@ -172,7 +175,7 @@ public:
      */
     int findVertexIdx(const T &in) const;
 
-    std::vector<Vertex<T>*> mwm();
+
 };
 
 void deleteMatrix(int **m, int n);
@@ -931,34 +934,31 @@ void Graph<T>::nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distan
 
     path.push_back(getVertexSet().front());
 }
-/**
- * @brief Finds all vertices in the graph with an odd degree.
- *
- * This function computes the minimum spanning tree (MST) of the graph using Prim's algorithm and then
- * identifies all vertices with an odd degree in the MST. These vertices are returned in a vector.
- *
- * @return std::vector<Vertex<T>*> A vector containing pointers to the vertices with an odd degree in the MST.
- */
 template <class T>
-std::vector<Vertex<T>*> Graph<T>::odds(){
-    std::vector<Vertex<T>*> odds;
-    if (getVertexSet().empty()) {
-        return odds;
-    }
+double Graph<T>::christofidesTSP( Vertex<T> *v) {
+    double dist = 0;
     prim();
-    for (auto vertex : getVertexSet()) {
-        vertex->setVisited(false);
-        vertex->setIndegree(0);
-    }
-    for (auto vertex : getVertexSet()) {
-        for (auto e: vertex->getMstAdj()){
-            e->getDest()->setIndegree(e->getDest()->getIndegree() + 1);
+    mwm();
+    for (auto vertex: vertexSet) {
+        for (auto e: vertex->getMstAdj()) {
+            e->setSelected(false);
+            e->getReverse()->setSelected(false);
         }
     }
-    for(auto& vertex : getVertexSet()){
-        if (vertex->getIndegree() % 2 != 0) odds.push_back(vertex);
+    std::queue<Vertex<T> *> path;
+    eulerianPath(path,v);
+    auto tour = hamiltonian_cycle(path);
+    for (size_t i = 0; i < tour.size(); ++i) {
+        auto current = tour[i];
+        if(i+1 != tour.size() -1){
+            auto next = tour[(i + 1)];
+            dist += Haversine(current->getLat(),current->getLon(),next->getLat(),next->getLat());
+        }
+        std::cout << current->getInfo() << "->";
     }
-    return odds;
+    dist += Haversine(tour[0]->getLat(),tour[0]->getLon(),tour[tour.size()-1]->getLat(),tour[tour.size()-1]->getLat());
+    std::cout << tour[0]->getInfo() << std::endl;
+    return dist;
 }
 /**
  * @brief Computes an Eulerian path starting from a given vertex and stores it in a queue.
@@ -989,7 +989,6 @@ std::vector<Vertex<T>*> Graph<T>::getOdds(){
     if (getVertexSet().empty()) {
         return odds;
     }
-    prim();
     for (auto vertex : getVertexSet()) {
         vertex->setVisited(false);
         vertex->setIndegree(0);
@@ -1018,14 +1017,27 @@ Edge<T>* Vertex<T>::getNearest() const {
     return selectedEdge;
 }
 template <class T>
-std::vector<Vertex<T>*> Graph<T>::mwm(){
+void Graph<T>::mwm() {
     auto odds = getOdds();
-    while (!odds.empty()){
-        auto vector = odds.front();
-        updateMst(vector,vector->getNearest()->getDest());
-        odds.erase(vector->getNearest()->getDest());
-        odds.erase(vector);
+    auto vertice = odds.begin();
+    while (vertice != odds.end()) {
+        auto itr = std::find(odds.begin(), odds.end(), (*vertice)->getNearest()->getDest());
+        updateMst(*vertice, *itr);
+        odds.erase(itr);
+        vertice = odds.erase(vertice);
     }
+}
+template <class T>
+std::vector<Vertex<T>* > Graph<T>::hamiltonian_cycle(std::queue<Vertex<T>*> path){
+    std::vector<Vertex<T> *> vertices;
+    while (!path.empty()){
+        auto it = std::find(vertices.begin(), vertices.end(), path.front());
+        if (it ==vertices.end()){
+            vertices.push_back(path.front());
+        }
+        path.pop();
+    }
+    return vertices;
 }
 
 

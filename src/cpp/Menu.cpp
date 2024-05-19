@@ -124,6 +124,7 @@ void Menu::Main_Menu() {
         cout << "Choose an option: ";
         int option;
         cin >> option;
+        int vertex;
         switch (option) {
             case 1:
                 heuristics.backtracking_algorithm();
@@ -135,7 +136,9 @@ void Menu::Main_Menu() {
                 heuristics.other_heuristic();
                 break;
             case 4:
-                heuristics.odds();
+                cout << "Number of vertex: ";
+                cin >> vertex;
+                heuristics.TSP_in_the_Real_World(vertex);
                 break;
             case 5:
                 c = false;
