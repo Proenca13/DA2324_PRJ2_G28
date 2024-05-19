@@ -153,6 +153,8 @@ public:
     std::vector<T> topsort() const;
     void tsp_backtracking(std::vector<int>& path,std::vector<int>& soltuion,double& solution_cost,double current_cost);
     double triangularApproximation(std::queue<Vertex<T>*> &path);
+    void nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distance,std::vector<Vertex<T>*>& cluster_vertices);
+    double Clustering(const std::vector<Vertex<T>*>& nodes, int k);
     void prim();
     void preorderTraversal(Vertex<T> *v, std::queue<Vertex<T> *> &path);
     protected:
@@ -821,6 +823,40 @@ double Graph<T>::triangularApproximation(std::queue<Vertex<T>*> &path) {
     return dist;
 
 }
+template <class T>
+void Graph<T>::nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distance,std::vector<Vertex<T>*>& cluster_vertices) {
+    distance = 0;
+    if (cluster_vertices.empty()) return;
+
+    for (auto v : cluster_vertices) {
+        v->setVisited(false);
+    }
+    Vertex<T>* currentVertex = cluster_vertices.front();
+    currentVertex->setVisited(true);
+    while (true) {
+        double minDist = INF;
+        Vertex<T>* nextVertex = nullptr;
+
+        for (auto e : currentVertex->getAdj()) {
+            Vertex<T>* neighbor = e->getDest();
+            if (!neighbor->isVisited()) {
+                double current_dist = e->getDistance();
+                if (current_dist < minDist) {
+                    minDist = current_dist;
+                    nextVertex = neighbor;
+                }
+            }
+        }
+
+        if (nextVertex == nullptr) break;
+
+        nextVertex->setVisited(true);
+        distance += minDist;
+        path.push_back(nextVertex);
+        currentVertex = nextVertex;
+    }
+}
+
 
 
 
