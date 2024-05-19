@@ -61,7 +61,7 @@ Graph<int> Parser::loadRealWordGraph(string& edgesPath,string& nodesPath){
         ver->setLat(lat);
         ver->setLon(lon);
         graph.vertexSet.push_back(ver);
-        vertexhash.insert({id,ver});
+        vertexhash[id] = ver;
     }
     while (getline(edges, line)) {
         stringstream ss(line);
@@ -73,13 +73,14 @@ Graph<int> Parser::loadRealWordGraph(string& edgesPath,string& nodesPath){
         ss.ignore(1);
         ss >> distancia;
         ss.ignore(1);
-        if(vertexhash.find(origem)== vertexhash.end()){
+        if(vertexhash[origem]== nullptr){
             graph.addVertex(origem);
         }
-        if(vertexhash.find(destino)== vertexhash.end()){
+        if(vertexhash[destino] == nullptr){
             graph.addVertex(destino);
         }
-        graph.addBidirectionalEdge(origem,destino,distancia);
+        vertexhash[origem]->addEdge(vertexhash[destino],distancia);
+        vertexhash[origem]->addEdge(vertexhash[destino],distancia);
     }
     return graph;
 }

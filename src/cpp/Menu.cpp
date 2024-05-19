@@ -4,6 +4,8 @@
 
 #include "../h/Menu.h"
 #include <iostream>
+#include <chrono>
+
 using namespace std;
 Menu::Menu() {};
 void  Menu::menu_choose_file() {
@@ -55,8 +57,12 @@ void  Menu::menu_choose_file() {
                 break;
         }
     }
+    auto start = std::chrono::high_resolution_clock::now();
     Heuristics heuristics(edgesfile,nodesfile);
     this->heuristics = heuristics;
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    cout << "Parsing time: " << duration.count() << " ms" << endl;
     Main_Menu();
 }
 
