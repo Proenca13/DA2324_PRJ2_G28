@@ -139,6 +139,7 @@ public:
      */
     bool addEdge(const T &sourc, const T &dest, double w);
     bool removeEdge(const T &source, const T &dest);
+    bool addBidirectionalEdge(Vertex<T>* v1, Vertex<T>* v2, double w);
     bool addBidirectionalEdge(const T &sourc, const T &dest, double w);
     void updateMst(Vertex<T>* v1,Vertex<T>* v2);
 
@@ -159,6 +160,7 @@ public:
     void prim();
     std::vector<Vertex<T>*> odds();
     void preorderTraversal(Vertex<T> *v, std::queue<Vertex<T> *> &path);
+    void eulerianPath( std::queue<Vertex<T> *> &path,Vertex<T>* v);
     protected:
 
     double ** distMatrix = nullptr;   // dist matrix for Floyd-Warshall
@@ -485,6 +487,16 @@ bool Graph<T>::removeEdge(const T &sourc, const T &dest) {
 }
 
 template <class T>
+bool Graph<T>::addBidirectionalEdge( Vertex<T>* v1, Vertex<T>* v2, double w) {
+    if (v1 == nullptr || v2 == nullptr)
+        return false;
+    auto e1 = v1->addEdge(v2, w);
+    auto e2 = v2->addEdge(v1, w);
+    e1->setReverse(e2);
+    e2->setReverse(e1);
+    return true;
+}
+template <class T>
 bool Graph<T>::addBidirectionalEdge(const T &sourc, const T &dest, double w) {
     auto v1 = findVertex(sourc);
     auto v2 = findVertex(dest);
@@ -496,7 +508,6 @@ bool Graph<T>::addBidirectionalEdge(const T &sourc, const T &dest, double w) {
     e2->setReverse(e1);
     return true;
 }
-
 /****************** DFS ********************/
 
 /*
@@ -884,27 +895,6 @@ double Graph<T>::triangularApproximation(std::queue<Vertex<T>*> &path) {
  * @param distancia Reference to a variable to store the total distance of the TSP path.
  */
 template <class T>
-std::vector<Vertex<T>*> Graph<T>::odds(){
-    std::vector<Vertex<T>*> odds;
-    if (getVertexSet().empty()) {
-        return odds;
-    }
-    prim();
-    for (auto vertex : getVertexSet()) {
-        vertex->setVisited(false);
-        vertex->setIndegree(0);
-    }
-    for (auto vertex : getVertexSet()) {
-        for (auto e: vertex->getAdj()){
-            e->getDest()->setIndegree(e->getDest()->getIndegree() + 1);
-        }
-    }
-    for(auto& vertex : getVertexSet()){
-        if (vertex->getIndegree() % 2 != 0) odds.push_back(vertex);
-    }
-    return odds;
-}
-template <class T>
 void Graph<T>::nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distancia) {
     distancia = 0;
     if (getVertexSet().empty()) return;
@@ -939,6 +929,57 @@ void Graph<T>::nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distan
 
     path.push_back(getVertexSet().front());
 }
+/**
+ * @brief Finds all vertices in the graph with an odd degree.
+ *
+ * This function computes the minimum spanning tree (MST) of the graph using Prim's algorithm and then
+ * identifies all vertices with an odd degree in the MST. These vertices are returned in a vector.
+ *
+ * @return std::vector<Vertex<T>*> A vector containing pointers to the vertices with an odd degree in the MST.
+ */
+template <class T>
+std::vector<Vertex<T>*> Graph<T>::odds(){
+    std::vector<Vertex<T>*> odds;
+    if (getVertexSet().empty()) {
+        return odds;
+    }
+    prim();
+    for (auto vertex : getVertexSet()) {
+        vertex->setVisited(false);
+        vertex->setIndegree(0);
+    }
+    for (auto vertex : getVertexSet()) {
+        for (auto e: vertex->getMstAdj()){
+            e->getDest()->setIndegree(e->getDest()->getIndegree() + 1);
+        }
+    }
+    for(auto& vertex : getVertexSet()){
+        if (vertex->getIndegree() % 2 != 0) odds.push_back(vertex);
+    }
+    return odds;
+}
+/**
+ * @brief Computes an Eulerian path starting from a given vertex and stores it in a queue.
+ *
+ * This function uses a depth-first search approach to construct an Eulerian path starting from the given vertex.
+ * It recursively visits each unvisited edge, marks it as visited, and continues to the destination vertex,
+ * adding vertices to the queue as the recursion unwinds.
+ *
+ * @param path A queue to store the vertices in the order they are visited in the Eulerian path.
+ * @param v The starting vertex for the Eulerian path.
+ */
+template <class T>
+void Graph<T>::eulerianPath(std::queue<Vertex<T> *> &path, Vertex<T>* v) {
+    path.push(v);
+    for(auto e : v->getMstAdj()) {
+        if(!e->isSelected()) {
+            e->setSelected(true);
+            e->getReverse()->setSelected(true);
+            eulerianPath(path, e->getDest());
+        }
+    }
+}
+
 
 
 
