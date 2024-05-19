@@ -157,7 +157,7 @@ public:
     double triangularApproximation(std::queue<Vertex<T>*> &path);
     void nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distancia);
     void prim();
-    std::vector<Vertex<T>*> mwm();
+    std::vector<Vertex<T>*> odds();
     void preorderTraversal(Vertex<T> *v, std::queue<Vertex<T> *> &path);
     protected:
 
@@ -884,15 +884,18 @@ double Graph<T>::triangularApproximation(std::queue<Vertex<T>*> &path) {
  * @param distancia Reference to a variable to store the total distance of the TSP path.
  */
 template <class T>
-std::vector<Vertex<T>*> Graph<T>::mwm(){
+std::vector<Vertex<T>*> Graph<T>::odds(){
     std::vector<Vertex<T>*> odds;
     if (getVertexSet().empty()) {
         return odds;
     }
     prim();
-    for (auto& vertex : getVertexSet()) {
+    for (auto vertex : getVertexSet()) {
         vertex->setVisited(false);
-        for (auto &e: vertex->getMstAdj()){
+        vertex->setIndegree(0);
+    }
+    for (auto vertex : getVertexSet()) {
+        for (auto e: vertex->getAdj()){
             e->getDest()->setIndegree(e->getDest()->getIndegree() + 1);
         }
     }

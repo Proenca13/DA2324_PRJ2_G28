@@ -112,7 +112,7 @@ void Menu::menu_choose_toy() {
 
 void Menu::Main_Menu() {
     int c = false;
-    while (c){
+    while (true){
         cout << "---------------------------------------------" << endl;
         cout << "|Welcome to the Main Menu!                  |" << endl;
         cout << "|1. Backtracking Algorithm                  |" << endl;
@@ -135,6 +135,7 @@ void Menu::Main_Menu() {
                 heuristics.other_heuristic();
                 break;
             case 4:
+                heuristics.odds();
                 break;
             case 5:
                 c = false;
@@ -143,8 +144,5 @@ void Menu::Main_Menu() {
                 cout << "Invalid Input!\n";
                 break;
         }
-    }
-    for (auto a:heuristics.odds()){
-        cout << a->getInfo() << " --- "<< a->getIndegree() << endl;
     }
 }
