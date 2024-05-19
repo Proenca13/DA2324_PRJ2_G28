@@ -12,6 +12,15 @@ Heuristics::Heuristics(string filepath) {
 Heuristics::Heuristics(string edgespath,string nodespath, bool is_real){
     if (is_real) graph = this->parser.loadRealWordGraph(edgespath,nodespath);
     else graph = this->parser.loadExtraGraph(edgespath,nodespath);
+    vector< int> res;
+    for (auto v : graph.getVertexSet()){
+        for(auto e : v->getAdj()){
+            if(e->getDest()->getInfo() == 514){
+                res.push_back(e->getOrig()->getInfo());
+            }
+        }
+    }
+    cout << res.size();
 }
 void Heuristics::backtracking_algorithm() {
     vector<int> path,solution;
