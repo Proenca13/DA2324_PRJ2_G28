@@ -833,8 +833,8 @@ void Graph<T>::nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distan
         path.push_back(currentVertex);
         double minDist = INF;
         Vertex<T>* nextVertex = nullptr;
-        for (auto e : currentVertex->getAdj()) {
-            Vertex<T>* neighbor = e->getDest();
+        for (auto v : getVertexSet()) {
+            Vertex<T>* neighbor = v;
             if (!neighbor->isVisited()) {
                 double current_dist = Haversine(currentVertex->getLat(),currentVertex->getLon(),neighbor->getLat(),neighbor->getLon());
                 if (current_dist < minDist) {
