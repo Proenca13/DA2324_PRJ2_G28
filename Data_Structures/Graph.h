@@ -34,6 +34,7 @@ public:
     unsigned int getIndegree() const;
     double getDist() const;
     Edge<T> *getPath() const;
+    Edge<T> *getNearest() const;
     double getLat();
     double getLon();
     struct VertexHash {
@@ -158,7 +159,7 @@ public:
     double triangularApproximation(std::queue<Vertex<T>*> &path);
     void nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distancia);
     void prim();
-    std::vector<Vertex<T>*> odds();
+    std::vector<Vertex<T> *> getOdds();
     void preorderTraversal(Vertex<T> *v, std::queue<Vertex<T> *> &path);
     void eulerianPath( std::queue<Vertex<T> *> &path,Vertex<T>* v);
     protected:
@@ -171,6 +172,7 @@ public:
      */
     int findVertexIdx(const T &in) const;
 
+    std::vector<Vertex<T>*> mwm();
 };
 
 void deleteMatrix(int **m, int n);
@@ -981,7 +983,50 @@ void Graph<T>::eulerianPath(std::queue<Vertex<T> *> &path, Vertex<T>* v) {
 }
 
 
+template <class T>
+std::vector<Vertex<T>*> Graph<T>::getOdds(){
+    std::vector<Vertex<T>*> odds;
+    if (getVertexSet().empty()) {
+        return odds;
+    }
+    prim();
+    for (auto vertex : getVertexSet()) {
+        vertex->setVisited(false);
+        vertex->setIndegree(0);
+    }
+    for (auto vertex : getVertexSet()) {
+        for (auto e: vertex->getMstAdj()){
+            e->getDest()->setIndegree(e->getDest()->getIndegree() + 1);
+        }
+    }
+    for(auto& vertex : getVertexSet()){
+        if (vertex->getIndegree() % 2 != 0) odds.push_back(vertex);
+    }
+    return odds;
+}
 
+template <class T>
+Edge<T>* Vertex<T>::getNearest() const {
+    double minwei = INF;
+    Edge<T>* selectedEdge;
+    for (auto e : getAdj()){
+        if (e->getWeight() < minwei) {
+            selectedEdge = e;
+            minwei = e->getWeight();
+        }
+    }
+    return selectedEdge;
+}
+template <class T>
+std::vector<Vertex<T>*> Graph<T>::mwm(){
+    auto odds = getOdds();
+    while (!odds.empty()){
+        auto vector = odds.front();
+        updateMst(vector,vector->getNearest()->getDest());
+        odds.erase(vector->getNearest()->getDest());
+        odds.erase(vector);
+    }
+}
 
 
 

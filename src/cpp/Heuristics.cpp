@@ -81,5 +81,5 @@ void Heuristics::other_heuristic() {
 }
 
 std::vector<Vertex<int>*> Heuristics::odds(){
-    return graph.odds();
+    return graph.getOdds();
 }
