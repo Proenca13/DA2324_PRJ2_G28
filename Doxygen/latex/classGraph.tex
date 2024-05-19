@@ -1,0 +1,356 @@
+\hypertarget{classGraph}{}\doxysection{Graph$<$ T $>$ Class Template Reference}
+\label{classGraph}\index{Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGraph_a8b7b7465fbfd562e2a469f90a437ab75}\label{classGraph_a8b7b7465fbfd562e2a469f90a437ab75}} 
+\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ {\bfseries find\+Vertex} (const T \&in) const
+\item 
+\mbox{\Hypertarget{classGraph_a00be284ea2be3b3d0f0d2e493b70245b}\label{classGraph_a00be284ea2be3b3d0f0d2e493b70245b}} 
+bool {\bfseries add\+Vertex} (const T \&in)
+\item 
+\mbox{\Hypertarget{classGraph_af9c903104ad69a7782979fa9caedf163}\label{classGraph_af9c903104ad69a7782979fa9caedf163}} 
+bool {\bfseries remove\+Vertex} (const T \&in)
+\item 
+\mbox{\Hypertarget{classGraph_ac61af3aafe6277215f5a3b3cc7d58ce2}\label{classGraph_ac61af3aafe6277215f5a3b3cc7d58ce2}} 
+bool {\bfseries add\+Edge} (const T \&sourc, const T \&dest, double w)
+\item 
+\mbox{\Hypertarget{classGraph_a8949d071d45bf93e171e275462e1007a}\label{classGraph_a8949d071d45bf93e171e275462e1007a}} 
+bool {\bfseries remove\+Edge} (const T \&source, const T \&dest)
+\item 
+\mbox{\Hypertarget{classGraph_a83937ed61b30513471e44512f398851c}\label{classGraph_a83937ed61b30513471e44512f398851c}} 
+bool {\bfseries add\+Bidirectional\+Edge} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$v1, \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$v2, double w)
+\item 
+\mbox{\Hypertarget{classGraph_aeb94a42983b1612ddbeade1a2a0132ea}\label{classGraph_aeb94a42983b1612ddbeade1a2a0132ea}} 
+bool {\bfseries add\+Bidirectional\+Edge} (const T \&sourc, const T \&dest, double w)
+\item 
+void \mbox{\hyperlink{classGraph_accd6a84d857dc146c0029f93eba9056d}{update\+Mst}} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$v1, \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$v2)
+\begin{DoxyCompactList}\small\item\em Updates the Minimum Spanning Tree (MST) edges between two vertices. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGraph_a0853eac15cdf0f06d63f4b8a7820ec71}\label{classGraph_a0853eac15cdf0f06d63f4b8a7820ec71}} 
+int {\bfseries get\+Num\+Vertex} () const
+\item 
+\mbox{\Hypertarget{classGraph_a41624b03fcb6bd29e4df574a1ec58541}\label{classGraph_a41624b03fcb6bd29e4df574a1ec58541}} 
+std\+::vector$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ {\bfseries get\+Vertex\+Set} () const
+\item 
+\mbox{\Hypertarget{classGraph_a1243f481d9929b890dbafe18cc3d8259}\label{classGraph_a1243f481d9929b890dbafe18cc3d8259}} 
+std\+::vector$<$ T $>$ {\bfseries dfs} () const
+\item 
+\mbox{\Hypertarget{classGraph_a4e6e8c33823d6d45d2ab201d64b39483}\label{classGraph_a4e6e8c33823d6d45d2ab201d64b39483}} 
+std\+::vector$<$ T $>$ {\bfseries dfs} (const T \&source) const
+\item 
+\mbox{\Hypertarget{classGraph_a468b6d9b6b1899d4c885324ed14e4f8a}\label{classGraph_a468b6d9b6b1899d4c885324ed14e4f8a}} 
+void {\bfseries dfs\+Visit} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$v, std\+::vector$<$ T $>$ \&res) const
+\item 
+\mbox{\Hypertarget{classGraph_a4b211a9a1e49216603e6a676df8138ec}\label{classGraph_a4b211a9a1e49216603e6a676df8138ec}} 
+std\+::vector$<$ T $>$ {\bfseries bfs} (const T \&source) const
+\item 
+\mbox{\Hypertarget{classGraph_a1ea1512afe5ab878301bc806c2eba9d2}\label{classGraph_a1ea1512afe5ab878301bc806c2eba9d2}} 
+bool {\bfseries is\+DAG} () const
+\item 
+bool \mbox{\hyperlink{classGraph_a06743c0b3e219cfeefa5aade38556cb7}{dfs\+Is\+DAG}} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$v) const
+\item 
+\mbox{\Hypertarget{classGraph_ab8c7720cd8fcba892d4550494e91b8d4}\label{classGraph_ab8c7720cd8fcba892d4550494e91b8d4}} 
+std\+::vector$<$ T $>$ {\bfseries topsort} () const
+\item 
+void \mbox{\hyperlink{classGraph_a4f2a0d61524a229a772a299fa6c7706d}{tsp\+\_\+backtracking}} (std\+::vector$<$ int $>$ \&path, std\+::vector$<$ int $>$ \&soltuion, double \&solution\+\_\+cost, double current\+\_\+cost)
+\begin{DoxyCompactList}\small\item\em Solves the Traveling Salesman Problem (TSP) using backtracking. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classGraph_a3a0a6b6a4bc5023de4f70f4766adef44}{triangular\+Approximation}} (std\+::queue$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ \&path)
+\begin{DoxyCompactList}\small\item\em Computes an approximation of the Traveling Salesman Problem (TSP) using the Triangular Approximation Method. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_a4c17d405f9605b67f0bf26f5256fc0e2}{nearest\+Neighbor\+TSP}} (std\+::vector$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ \&path, double \&distancia)
+\begin{DoxyCompactList}\small\item\em Computes the Traveling Salesman Problem (TSP) solution using the Nearest Neighbor heuristic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_adbd376ff12b27523b5bfc95ee519bc4f}{prim}} ()
+\begin{DoxyCompactList}\small\item\em Executes Prim\textquotesingle{}s algorithm to compute the Minimum Spanning Tree (MST) of the graph. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classGraph_afc51f1e7c6eba74beb6d142b47386d31}{christofides\+TSP}} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$v)
+\begin{DoxyCompactList}\small\item\em Computes an approximate solution to the Traveling Salesman Problem (TSP) using the Christofides algorithm. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ \mbox{\hyperlink{classGraph_ab40d2ed94ccfe83e5d406af45f4e837e}{get\+Odds}} ()
+\begin{DoxyCompactList}\small\item\em Finds all vertices in the graph with odd degree. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_a349af962a25bf0117bf56960d5e1c1ab}{preorder\+Traversal}} (\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$v, std\+::queue$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ \&path)
+\begin{DoxyCompactList}\small\item\em Performs a preorder traversal starting from a given vertex in the Minimum Spanning Tree (MST). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_a2407e2fa0f7476e408e146933b285faf}{eulerian\+Path}} (std\+::queue$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ \&path, \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$v)
+\begin{DoxyCompactList}\small\item\em Computes an Eulerian path starting from a given vertex and stores it in a queue. \end{DoxyCompactList}\item 
+std\+::vector$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ \mbox{\hyperlink{classGraph_aec43803a620dc2339ebc28272a41fe0d}{hamiltonian\+\_\+cycle}} (std\+::queue$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ path)
+\begin{DoxyCompactList}\small\item\em Constructs a Hamiltonian cycle from a given path of vertices. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_aea4b460f3a6f3614135db965aa0194da}{mwm}} ()
+\begin{DoxyCompactList}\small\item\em Computes the Minimum Weight Matching (MWM) for the odd degree vertices in the graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGraph_a26b3a6b9c61f02f5b2cd38ad4c6a4953}\label{classGraph_a26b3a6b9c61f02f5b2cd38ad4c6a4953}} 
+std\+::vector$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ {\bfseries vertex\+Set}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGraph_a676cdfb976eccfa82b631d2094c1cdac}\label{classGraph_a676cdfb976eccfa82b631d2094c1cdac}} 
+int {\bfseries find\+Vertex\+Idx} (const T \&in) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGraph_a4517f4351bc7f0348369b25b7c0b44fe}\label{classGraph_a4517f4351bc7f0348369b25b7c0b44fe}} 
+double $\ast$$\ast$ {\bfseries dist\+Matrix} = nullptr
+\item 
+\mbox{\Hypertarget{classGraph_afb9524726f8f3cda3115a0d03e3f6e09}\label{classGraph_afb9524726f8f3cda3115a0d03e3f6e09}} 
+int $\ast$$\ast$ {\bfseries path\+Matrix} = nullptr
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraph_afc51f1e7c6eba74beb6d142b47386d31}\label{classGraph_afc51f1e7c6eba74beb6d142b47386d31}} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!christofidesTSP@{christofidesTSP}}
+\index{christofidesTSP@{christofidesTSP}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{christofidesTSP()}{christofidesTSP()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+double \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::christofides\+TSP (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$}]{v }\end{DoxyParamCaption})}
+
+
+
+Computes an approximate solution to the Traveling Salesman Problem (TSP) using the Christofides algorithm. 
+
+This function computes an approximate solution to the TSP for a given starting vertex using the Christofides algorithm\+:
+\begin{DoxyItemize}
+\item Constructs a Minimum Spanning Tree (MST) using Prim\textquotesingle{}s algorithm.
+\item Computes a Minimum Weight Matching (MWM) for vertices with odd degree.
+\item Constructs an Eulerian path by combining the MST and MWM.
+\item Converts the Eulerian path into a Hamiltonian cycle and calculates the total distance.
+\item Outputs the sequence of vertices visited in the tour to standard output.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The starting vertex for the TSP tour. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+double The total distance of the approximate TSP tour. O(V²), where V is the number of vertexes . 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGraph_a06743c0b3e219cfeefa5aade38556cb7}\label{classGraph_a06743c0b3e219cfeefa5aade38556cb7}} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!dfsIsDAG@{dfsIsDAG}}
+\index{dfsIsDAG@{dfsIsDAG}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{dfsIsDAG()}{dfsIsDAG()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+bool \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::dfs\+Is\+DAG (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$}]{v }\end{DoxyParamCaption}) const}
+
+Auxiliary function that visits a vertex (v) and its adjacent, recursively. Returns false (not acyclic) if an edge to a vertex in the stack is found. \mbox{\Hypertarget{classGraph_a2407e2fa0f7476e408e146933b285faf}\label{classGraph_a2407e2fa0f7476e408e146933b285faf}} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!eulerianPath@{eulerianPath}}
+\index{eulerianPath@{eulerianPath}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{eulerianPath()}{eulerianPath()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::eulerian\+Path (\begin{DoxyParamCaption}\item[{std\+::queue$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ \&}]{path,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$}]{v }\end{DoxyParamCaption})}
+
+
+
+Computes an Eulerian path starting from a given vertex and stores it in a queue. 
+
+This function uses a depth-\/first search approach to construct an Eulerian path starting from the given vertex. It recursively visits each unvisited edge, marks it as visited, and continues to the destination vertex, adding vertices to the queue as the recursion unwinds.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & A queue to store the vertices in the order they are visited in the Eulerian path. \\
+\hline
+{\em v} & The starting vertex for the Eulerian path. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Time complexity}
+O(\+E), where E is the number of Edges in the graph . 
+\end{DoxyParagraph}
+\mbox{\Hypertarget{classGraph_ab40d2ed94ccfe83e5d406af45f4e837e}\label{classGraph_ab40d2ed94ccfe83e5d406af45f4e837e}} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!getOdds@{getOdds}}
+\index{getOdds@{getOdds}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{getOdds()}{getOdds()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::get\+Odds}
+
+
+
+Finds all vertices in the graph with odd degree. 
+
+This function calculates the degree of each vertex in the graph and returns a vector containing all vertices with an odd degree.
+
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$Vertex$<$\+T$>$$\ast$$>$ A vector containing all vertices with odd degree. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Time complexity}
+O(E + V), where V is the number of vertexes and E the number of edges in the MSTgraph. 
+\end{DoxyParagraph}
+\mbox{\Hypertarget{classGraph_aec43803a620dc2339ebc28272a41fe0d}\label{classGraph_aec43803a620dc2339ebc28272a41fe0d}} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!hamiltonian\_cycle@{hamiltonian\_cycle}}
+\index{hamiltonian\_cycle@{hamiltonian\_cycle}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{hamiltonian\_cycle()}{hamiltonian\_cycle()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::hamiltonian\+\_\+cycle (\begin{DoxyParamCaption}\item[{std\+::queue$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$}]{path }\end{DoxyParamCaption})}
+
+
+
+Constructs a Hamiltonian cycle from a given path of vertices. 
+
+This function constructs a Hamiltonian cycle from a given path of vertices and returns it as a vector of vertices.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & A queue containing the vertices in the order of the Hamiltonian path. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+std\+::vector$<$Vertex$<$\+T$>$$\ast$$>$ A vector representing the vertices in the Hamiltonian cycle. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Time complexity}
+O(\+V), where V is the number of vertexes in the graph 
+\end{DoxyParagraph}
+\mbox{\Hypertarget{classGraph_aea4b460f3a6f3614135db965aa0194da}\label{classGraph_aea4b460f3a6f3614135db965aa0194da}} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!mwm@{mwm}}
+\index{mwm@{mwm}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{mwm()}{mwm()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::mwm}
+
+
+
+Computes the Minimum Weight Matching (MWM) for the odd degree vertices in the graph. 
+
+This function finds all vertices with an odd degree, and pairs them to create a Minimum Weight Matching (MWM) using a heuristic approach. It updates the MST (Minimum Spanning Tree) with these new edges. O(V²), where V is the number of vertexes. \mbox{\Hypertarget{classGraph_a4c17d405f9605b67f0bf26f5256fc0e2}\label{classGraph_a4c17d405f9605b67f0bf26f5256fc0e2}} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!nearestNeighborTSP@{nearestNeighborTSP}}
+\index{nearestNeighborTSP@{nearestNeighborTSP}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{nearestNeighborTSP()}{nearestNeighborTSP()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::nearest\+Neighbor\+TSP (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ \&}]{path,  }\item[{double \&}]{distancia }\end{DoxyParamCaption})}
+
+
+
+Computes the Traveling Salesman Problem (TSP) solution using the Nearest Neighbor heuristic. 
+
+This function computes an approximate solution to the TSP using the Nearest Neighbor heuristic\+:
+\begin{DoxyEnumerate}
+\item Starts from the first vextex.
+\item Iteratively selects the nearest unvisited vertex until all vertices are visited.
+\item Returns to the starting vertex to complete the tour.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Vector to store the vertices in the order of the TSP path. \\
+\hline
+{\em distancia} & Reference to a variable to store the total distance of the TSP path. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Time complexity}
+O(V²), where V is the number of vertexes . 
+\end{DoxyParagraph}
+\mbox{\Hypertarget{classGraph_a349af962a25bf0117bf56960d5e1c1ab}\label{classGraph_a349af962a25bf0117bf56960d5e1c1ab}} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!preorderTraversal@{preorderTraversal}}
+\index{preorderTraversal@{preorderTraversal}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{preorderTraversal()}{preorderTraversal()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::preorder\+Traversal (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$}]{v,  }\item[{std\+::queue$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Performs a preorder traversal starting from a given vertex in the Minimum Spanning Tree (MST). 
+
+This function performs a recursive preorder traversal starting from the given vertex in the MST of the graph. It visits each vertex in the tree exactly once and adds them to the provided queue in the order they are visited.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & The starting vertex for the preorder traversal. \\
+\hline
+{\em path} & The queue to store the vertices in the order of traversal. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Time complexity}
+O(E + V), where V is the number of vertexes and E the number of edges in the graph. 
+\end{DoxyParagraph}
+\mbox{\Hypertarget{classGraph_adbd376ff12b27523b5bfc95ee519bc4f}\label{classGraph_adbd376ff12b27523b5bfc95ee519bc4f}} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!prim@{prim}}
+\index{prim@{prim}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{prim()}{prim()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::prim}
+
+
+
+Executes Prim\textquotesingle{}s algorithm to compute the Minimum Spanning Tree (MST) of the graph. 
+
+This function computes the MST using Prim\textquotesingle{}s algorithm. It starts from the first vertice, updates the MST edges iteratively, and maintains a priority queue to efficiently find the next vertex to add to the MST. \begin{DoxyParagraph}{Time complexity}
+O(\+E $\ast$ log(\+V)), where V is the number of vertexes and E the number of edges in the graph. 
+\end{DoxyParagraph}
+\mbox{\Hypertarget{classGraph_a3a0a6b6a4bc5023de4f70f4766adef44}\label{classGraph_a3a0a6b6a4bc5023de4f70f4766adef44}} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!triangularApproximation@{triangularApproximation}}
+\index{triangularApproximation@{triangularApproximation}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{triangularApproximation()}{triangularApproximation()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+double \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::triangular\+Approximation (\begin{DoxyParamCaption}\item[{std\+::queue$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$ $>$ \&}]{path }\end{DoxyParamCaption})}
+
+
+
+Computes an approximation of the Traveling Salesman Problem (TSP) using the Triangular Approximation Method. 
+
+This function computes an approximation of the TSP using the Triangular Approximation Method\+:
+\begin{DoxyEnumerate}
+\item Constructs a Minimum Spanning Tree (MST) using Prim\textquotesingle{}s algorithm.
+\item Performs a preorder traversal starting from the root of the MST.
+\item Computes the total distance of the path formed by the preorder traversal in the TSP.
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & A queue to store the vertices in the order of traversal. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The total distance of the TSP approximation using the Triangular Approximation Method. 
+\end{DoxyReturn}
+\begin{DoxyParagraph}{Time complexity}
+O(\+E $\ast$ log(\+V)), where V is the number of vertexes and E the number of edges in the graph. 
+\end{DoxyParagraph}
+\mbox{\Hypertarget{classGraph_a4f2a0d61524a229a772a299fa6c7706d}\label{classGraph_a4f2a0d61524a229a772a299fa6c7706d}} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!tsp\_backtracking@{tsp\_backtracking}}
+\index{tsp\_backtracking@{tsp\_backtracking}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{tsp\_backtracking()}{tsp\_backtracking()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::tsp\+\_\+backtracking (\begin{DoxyParamCaption}\item[{std\+::vector$<$ int $>$ \&}]{path,  }\item[{std\+::vector$<$ int $>$ \&}]{solution,  }\item[{double \&}]{solution\+\_\+cost,  }\item[{double}]{current\+\_\+cost }\end{DoxyParamCaption})}
+
+
+
+Solves the Traveling Salesman Problem (TSP) using backtracking. 
+
+This function recursively computes the TSP solution using backtracking. It finds the shortest path that visits every vertex exactly once and returns to the starting vertex.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The current path being constructed in the recursion. \\
+\hline
+{\em solution} & The best solution found by the algorithm. \\
+\hline
+{\em solution\+\_\+cost} & The cost of the best solution found. \\
+\hline
+{\em current\+\_\+cost} & The current cost of the path being constructed. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyParagraph}{Time complexity}
+O(V!), where V is the number of vertexes in the graph. 
+\end{DoxyParagraph}
+\mbox{\Hypertarget{classGraph_accd6a84d857dc146c0029f93eba9056d}\label{classGraph_accd6a84d857dc146c0029f93eba9056d}} 
+\index{Graph$<$ T $>$@{Graph$<$ T $>$}!updateMst@{updateMst}}
+\index{updateMst@{updateMst}!Graph$<$ T $>$@{Graph$<$ T $>$}}
+\doxysubsubsection{\texorpdfstring{updateMst()}{updateMst()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \mbox{\hyperlink{classGraph}{Graph}}$<$ T $>$\+::update\+Mst (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$}]{v1,  }\item[{\mbox{\hyperlink{classVertex}{Vertex}}$<$ T $>$ $\ast$}]{v2 }\end{DoxyParamCaption})}
+
+
+
+Updates the Minimum Spanning Tree (MST) edges between two vertices. 
+
+This function updates the MST edges between two vertices by adding new edges and setting reverse edges for bidirectional connectivity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em v1} & The orig vertex. \\
+\hline
+{\em v2} & The dest vertex. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Data\+\_\+\+Structures/Graph.\+h\end{DoxyCompactItemize}

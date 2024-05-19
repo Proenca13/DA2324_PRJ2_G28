@@ -1,0 +1,95 @@
+\hypertarget{classParser}{}\doxysection{Parser Class Reference}
+\label{classParser}\index{Parser@{Parser}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classParser_a12234f6cd36b61af4b50c94a179422c1}\label{classParser_a12234f6cd36b61af4b50c94a179422c1}} 
+\mbox{\hyperlink{classParser_a12234f6cd36b61af4b50c94a179422c1}{Parser}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \mbox{\hyperlink{classParser}{Parser}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \mbox{\hyperlink{classParser_a1a7548d68bed9cc005cfedc86c29fbd3}{load\+Toy\+Graph}} (string \&file\+Path)
+\begin{DoxyCompactList}\small\item\em Loads a toy graph from a file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \mbox{\hyperlink{classParser_a0ea33d87f149c32a4fd4a8f8e2973ad8}{load\+Extra\+Graph}} (string \&edges\+Path, string \&nodes\+Path)
+\begin{DoxyCompactList}\small\item\em Loads an fully connected graph from two files containing edges and nodes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ \mbox{\hyperlink{classParser_ae3ca452e198e94d60088cb985d9f4b01}{load\+Real\+Word\+Graph}} (string \&edges\+Path, string \&nodes\+Path)
+\begin{DoxyCompactList}\small\item\em Loads a real world graph from two files containing edges and nodes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classParser_a0ea33d87f149c32a4fd4a8f8e2973ad8}\label{classParser_a0ea33d87f149c32a4fd4a8f8e2973ad8}} 
+\index{Parser@{Parser}!loadExtraGraph@{loadExtraGraph}}
+\index{loadExtraGraph@{loadExtraGraph}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{loadExtraGraph()}{loadExtraGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ Parser\+::load\+Extra\+Graph (\begin{DoxyParamCaption}\item[{string \&}]{edges\+Path,  }\item[{string \&}]{nodes\+Path }\end{DoxyParamCaption})}
+
+
+
+Loads an fully connected graph from two files containing edges and nodes. 
+
+This function reads edges and nodes from the specified file paths. It creates vertices and adds them to the graph. It then creates edges between the vertices based on the provided data. The files should be in the following format\+:
+\begin{DoxyItemize}
+\item edges file\+: origem,destino,distancia
+\item nodes file\+: id,lon,lat
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em edges\+Path} & Path to the file containing the edges. \\
+\hline
+{\em nodes\+Path} & Path to the file containing the nodes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classGraph}{Graph$<$int$>$}} The loaded fully connected graph. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classParser_ae3ca452e198e94d60088cb985d9f4b01}\label{classParser_ae3ca452e198e94d60088cb985d9f4b01}} 
+\index{Parser@{Parser}!loadRealWordGraph@{loadRealWordGraph}}
+\index{loadRealWordGraph@{loadRealWordGraph}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{loadRealWordGraph()}{loadRealWordGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ Parser\+::load\+Real\+Word\+Graph (\begin{DoxyParamCaption}\item[{string \&}]{edges\+Path,  }\item[{string \&}]{nodes\+Path }\end{DoxyParamCaption})}
+
+
+
+Loads a real world graph from two files containing edges and nodes. 
+
+This function reads edges and nodes from the specified file paths. It creates vertices and adds them to the graph with their respective longitude and latitude. It then creates edges between the vertices based on the provided data. The files should be in the following format\+:
+\begin{DoxyItemize}
+\item nodes file\+: id,lon,lat
+\item edges file\+: origem,destino,distancia
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em edges\+Path} & Path to the file containing the edges. \\
+\hline
+{\em nodes\+Path} & Path to the file containing the nodes. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classGraph}{Graph$<$int$>$}} The loaded real world graph. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classParser_a1a7548d68bed9cc005cfedc86c29fbd3}\label{classParser_a1a7548d68bed9cc005cfedc86c29fbd3}} 
+\index{Parser@{Parser}!loadToyGraph@{loadToyGraph}}
+\index{loadToyGraph@{loadToyGraph}!Parser@{Parser}}
+\doxysubsubsection{\texorpdfstring{loadToyGraph()}{loadToyGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGraph}{Graph}}$<$ int $>$ Parser\+::load\+Toy\+Graph (\begin{DoxyParamCaption}\item[{string \&}]{file\+Path }\end{DoxyParamCaption})}
+
+
+
+Loads a toy graph from a file. 
+
+This function reads a toy graph from the specified file path. The file should contain edges in the format\+: origem,destino,distancia. Each vertex is added to the graph if it does not already exist, and edges are added bidirectionally.
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Path} & Path to the file containing the toy graph. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\mbox{\hyperlink{classGraph}{Graph$<$int$>$}} The loaded toy graph. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/h/Parser.\+h\item 
+src/cpp/Parser.\+cpp\end{DoxyCompactItemize}

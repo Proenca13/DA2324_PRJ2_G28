@@ -1,0 +1,89 @@
+\hypertarget{classHeuristics}{}\doxysection{Heuristics Class Reference}
+\label{classHeuristics}\index{Heuristics@{Heuristics}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classHeuristics_a38004712945d049c21838522eee2bfbb}\label{classHeuristics_a38004712945d049c21838522eee2bfbb}} 
+\mbox{\hyperlink{classHeuristics_a38004712945d049c21838522eee2bfbb}{Heuristics}} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for \mbox{\hyperlink{classHeuristics}{Heuristics}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHeuristics_a758b5faa86726175024d08811f870748}{Heuristics}} (string filepath)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classHeuristics}{Heuristics}} object and loads a toy graph from a file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classHeuristics_a3575cc74335362909ddd864bb48aaf9a}{Heuristics}} (string edgespath, string nodespath, bool is\+\_\+real)
+\begin{DoxyCompactList}\small\item\em Constructs a \mbox{\hyperlink{classHeuristics}{Heuristics}} object and loads a graph from files. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHeuristics_a39ad0b6ee822aaa650240811d6e1e568}\label{classHeuristics_a39ad0b6ee822aaa650240811d6e1e568}} 
+void \mbox{\hyperlink{classHeuristics_a39ad0b6ee822aaa650240811d6e1e568}{backtracking\+\_\+algorithm}} ()
+\begin{DoxyCompactList}\small\item\em Executes the backtracking algorithm to solve TSP. Prints the path, its distance, and the execution time. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHeuristics_a4a93e472b3e15989b773aed260a32c75}\label{classHeuristics_a4a93e472b3e15989b773aed260a32c75}} 
+void \mbox{\hyperlink{classHeuristics_a4a93e472b3e15989b773aed260a32c75}{triangular\+\_\+approximation\+\_\+heuristic}} ()
+\begin{DoxyCompactList}\small\item\em Executes the triangular approximation heuristic to solve TSP. Prints the path, its distance, and the execution time. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classHeuristics_a7af0fad958a68f4e8e64f6ad290eeb38}\label{classHeuristics_a7af0fad958a68f4e8e64f6ad290eeb38}} 
+void \mbox{\hyperlink{classHeuristics_a7af0fad958a68f4e8e64f6ad290eeb38}{other\+\_\+heuristic}} ()
+\begin{DoxyCompactList}\small\item\em Executes the nearest neighbor heuristic to solve TSP. Prints the path, its distance, and the execution time. \end{DoxyCompactList}\item 
+vector$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ int $>$ $\ast$ $>$ \mbox{\hyperlink{classHeuristics_a1b982f2948f8a1c12f2cc39e38dc7ddb}{TSP\+\_\+in\+\_\+the\+\_\+\+Real\+\_\+\+World}} (int start)
+\begin{DoxyCompactList}\small\item\em Applies the Christofides TSP heuristic starting from a specified vertex. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classHeuristics_a758b5faa86726175024d08811f870748}\label{classHeuristics_a758b5faa86726175024d08811f870748}} 
+\index{Heuristics@{Heuristics}!Heuristics@{Heuristics}}
+\index{Heuristics@{Heuristics}!Heuristics@{Heuristics}}
+\doxysubsubsection{\texorpdfstring{Heuristics()}{Heuristics()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Heuristics\+::\+Heuristics (\begin{DoxyParamCaption}\item[{string}]{filepath }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classHeuristics}{Heuristics}} object and loads a toy graph from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filepath} & The path to the file containing the graph data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classHeuristics_a3575cc74335362909ddd864bb48aaf9a}\label{classHeuristics_a3575cc74335362909ddd864bb48aaf9a}} 
+\index{Heuristics@{Heuristics}!Heuristics@{Heuristics}}
+\index{Heuristics@{Heuristics}!Heuristics@{Heuristics}}
+\doxysubsubsection{\texorpdfstring{Heuristics()}{Heuristics()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Heuristics\+::\+Heuristics (\begin{DoxyParamCaption}\item[{string}]{edgespath,  }\item[{string}]{nodespath,  }\item[{bool}]{is\+\_\+real }\end{DoxyParamCaption})}
+
+
+
+Constructs a \mbox{\hyperlink{classHeuristics}{Heuristics}} object and loads a graph from files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em edgespath} & The path to the file containing the edges data. \\
+\hline
+{\em nodespath} & The path to the file containing the nodes data. \\
+\hline
+{\em is\+\_\+real} & A flag indicating whether to load a real-\/world graph or an fully connected graph. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classHeuristics_a1b982f2948f8a1c12f2cc39e38dc7ddb}\label{classHeuristics_a1b982f2948f8a1c12f2cc39e38dc7ddb}} 
+\index{Heuristics@{Heuristics}!TSP\_in\_the\_Real\_World@{TSP\_in\_the\_Real\_World}}
+\index{TSP\_in\_the\_Real\_World@{TSP\_in\_the\_Real\_World}!Heuristics@{Heuristics}}
+\doxysubsubsection{\texorpdfstring{TSP\_in\_the\_Real\_World()}{TSP\_in\_the\_Real\_World()}}
+{\footnotesize\ttfamily std\+::vector$<$ \mbox{\hyperlink{classVertex}{Vertex}}$<$ int $>$ $\ast$ $>$ Heuristics\+::\+TSP\+\_\+in\+\_\+the\+\_\+\+Real\+\_\+\+World (\begin{DoxyParamCaption}\item[{int}]{start }\end{DoxyParamCaption})}
+
+
+
+Applies the Christofides TSP heuristic starting from a specified vertex. 
+
+This function applies the Christofides TSP heuristic starting from the vertex specified by the {\ttfamily start} parameter in the graph. It returns a vector containing the vertices in the order of the tour found by the heuristic.
+
+
+\begin{DoxyParams}{Parameters}
+{\em start} & The starting vertex for the TSP heuristic. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of vertices representing the TSP tour found. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/h/Heuristics.\+h\item 
+src/cpp/Heuristics.\+cpp\end{DoxyCompactItemize}
