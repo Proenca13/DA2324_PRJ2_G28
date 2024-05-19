@@ -33,6 +33,14 @@ void  Menu::menu_choose_file() {
                 edgesfile = "../Extra_Fully_Connected_Graphs/edges_" + to_string(number_edges) + ".csv";
                 c = false;
                 break;
+            case 3:
+                cout << "Please enter the number of the graph (from 1 to 3): ";
+                int number_graph;
+                cin >> number_graph;
+                nodesfile = "../Real_World_Graphs/graph" + to_string(number_graph) + "/nodes.csv";
+                edgesfile = "../Real_World_Graphs/graph" + to_string(number_graph) + "/edges.csv";
+                c = false;
+                break;
             case 4:
                 cout << "Please enter the nodes file path: ";
                 getline(cin>>ws,nodesfile);

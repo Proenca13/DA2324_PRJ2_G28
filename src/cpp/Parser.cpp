@@ -2,6 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <unordered_map>
+
 using namespace std;
 Parser::Parser() {};
 Graph<int> Parser::loadToyGraph(string &filePath) {
@@ -35,6 +37,7 @@ Graph<int> Parser::loadToyGraph(string &filePath) {
 }
 Graph<int> Parser::loadRealWordGraph(string& edgesPath,string& nodesPath){
     ifstream nodes,edges;
+    std::unordered_map<int ,Vertex<int>*,Vertex<int>::VertexHash> vertexhash;
     nodes.open(nodesPath);
     edges.open(edgesPath);
     Graph<int> graph;
@@ -54,9 +57,11 @@ Graph<int> Parser::loadRealWordGraph(string& edgesPath,string& nodesPath){
         ss.ignore(1);
         ss >> lat;
         ss.ignore(1);
-        graph.addVertex(id);
-        graph.findVertex(id)->setLat(lat);
-        graph.findVertex(id)->setLon(lon);
+        Vertex<int>* ver = new Vertex(id);
+        ver->setLat(lat);
+        ver->setLon(lon);
+        graph.vertexSet.push_back(ver);
+        vertexhash.insert({id,ver});
     }
     while (getline(edges, line)) {
         stringstream ss(line);
@@ -68,10 +73,10 @@ Graph<int> Parser::loadRealWordGraph(string& edgesPath,string& nodesPath){
         ss.ignore(1);
         ss >> distancia;
         ss.ignore(1);
-        if(graph.findVertex(origem)== nullptr){
+        if(vertexhash.find(origem)== vertexhash.end()){
             graph.addVertex(origem);
         }
-        if(graph.findVertex(destino)== nullptr){
+        if(vertexhash.find(destino)== vertexhash.end()){
             graph.addVertex(destino);
         }
         graph.addBidirectionalEdge(origem,destino,distancia);
