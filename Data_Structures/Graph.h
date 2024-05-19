@@ -709,6 +709,18 @@ Graph<T>::~Graph() {
     deleteMatrix(distMatrix, vertexSet.size());
     deleteMatrix(pathMatrix, vertexSet.size());
 }
+/**
+ * @brief Solves the Traveling Salesman Problem (TSP) using backtracking.
+ *
+ * This function recursively computes the TSP solution using backtracking.
+ * It finds the shortest path that visits every vertex exactly once and returns
+ * to the starting vertex.
+ *
+ * @param path The current path being constructed in the recursion.
+ * @param solution The best solution found by the algorithm.
+ * @param solution_cost The cost of the best solution found.
+ * @param current_cost The current cost of the path being constructed.
+ */
 template <class T>
 void Graph<T>::tsp_backtracking(std::vector<int>& path, std::vector<int>& solution, double& solution_cost, double current_cost) {
     if (path.size() == vertexSet.size()) {
@@ -739,6 +751,15 @@ void Graph<T>::tsp_backtracking(std::vector<int>& path, std::vector<int>& soluti
         }
     }
 }
+/**
+ * @brief Updates the Minimum Spanning Tree (MST) edges between two vertices.
+ *
+ * This function updates the MST edges between two vertices by adding new edges
+ * and setting reverse edges for bidirectional connectivity.
+ *
+ * @param v1 The orig vertex.
+ * @param v2 The dest vertex.
+ */
 template <class T>
 void Graph<T>::updateMst(Vertex<T>* v1,Vertex<T>* v2){
     auto e1 = v1->addMstEdge(v2, v1->getPath()->getWeight());
@@ -746,6 +767,13 @@ void Graph<T>::updateMst(Vertex<T>* v1,Vertex<T>* v2){
     e1->setReverse(e2);
     e2->setReverse(e1);
 }
+/**
+ * @brief Executes Prim's algorithm to compute the Minimum Spanning Tree (MST) of the graph.
+ *
+ * This function computes the MST using Prim's algorithm. It starts from the first vertice,
+ * updates the MST edges iteratively, and maintains a priority queue to efficiently find the
+ * next vertex to add to the MST.
+ */
 template <class T>
 void Graph<T>::prim() {
     if (getVertexSet().empty()) {
@@ -784,6 +812,16 @@ void Graph<T>::prim() {
         }
     }
 }
+/**
+ * @brief Performs a preorder traversal starting from a given vertex in the Minimum Spanning Tree (MST).
+ *
+ * This function performs a recursive preorder traversal starting from the given vertex
+ * in the MST of the graph. It visits each vertex in the tree exactly once and adds them
+ * to the provided queue in the order they are visited.
+ *
+ * @param v The starting vertex for the preorder traversal.
+ * @param path The queue to store the vertices in the order of traversal.
+ */
 template <class T>
 void Graph<T>::preorderTraversal(Vertex<T> *v, std::queue<Vertex<T> *> &path) {
     if (v == nullptr) return;
@@ -796,6 +834,17 @@ void Graph<T>::preorderTraversal(Vertex<T> *v, std::queue<Vertex<T> *> &path) {
         }
     }
 }
+/**
+ * @brief Computes an approximation of the Traveling Salesman Problem (TSP) using the Triangular Approximation Method.
+ *
+ * This function computes an approximation of the TSP using the Triangular Approximation Method:
+ * 1. Constructs a Minimum Spanning Tree (MST) using Prim's algorithm.
+ * 2. Performs a preorder traversal starting from the root of the MST.
+ * 3. Computes the total distance of the path formed by the preorder traversal in the TSP.
+ *
+ * @param path A queue to store the vertices in the order of traversal.
+ * @return The total distance of the TSP approximation using the Triangular Approximation Method.
+ */
 template <class T>
 double Graph<T>::triangularApproximation(std::queue<Vertex<T>*> &path) {
     double dist = 0.0;
@@ -821,6 +870,17 @@ double Graph<T>::triangularApproximation(std::queue<Vertex<T>*> &path) {
     return dist;
 
 }
+/**
+ * @brief Computes the Traveling Salesman Problem (TSP) solution using the Nearest Neighbor heuristic.
+ *
+ * This function computes an approximate solution to the TSP using the Nearest Neighbor heuristic:
+ * 1. Starts from the first vextex.
+ * 2. Iteratively selects the nearest unvisited vertex until all vertices are visited.
+ * 3. Returns to the starting vertex to complete the tour.
+ *
+ * @param path Vector to store the vertices in the order of the TSP path.
+ * @param distancia Reference to a variable to store the total distance of the TSP path.
+ */
 template <class T>
 void Graph<T>::nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distancia) {
     distancia = 0;
