@@ -111,8 +111,8 @@ void Menu::menu_choose_toy() {
 }
 
 void Menu::Main_Menu() {
-    int c = false;
-    while (true){
+    int c = true;
+    while (c){
         cout << "---------------------------------------------" << endl;
         cout << "|Welcome to the Main Menu!                  |" << endl;
         cout << "|1. Backtracking Algorithm                  |" << endl;

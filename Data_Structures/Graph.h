@@ -738,6 +738,8 @@ Graph<T>::~Graph() {
  * @param solution The best solution found by the algorithm.
  * @param solution_cost The cost of the best solution found.
  * @param current_cost The current cost of the path being constructed.
+ * @par Time complexity
+ * O(V!), where V is the number of vertexes in the graph.
  */
 template <class T>
 void Graph<T>::tsp_backtracking(std::vector<int>& path, std::vector<int>& solution, double& solution_cost, double current_cost) {
@@ -791,6 +793,8 @@ void Graph<T>::updateMst(Vertex<T>* v1,Vertex<T>* v2){
  * This function computes the MST using Prim's algorithm. It starts from the first vertice,
  * updates the MST edges iteratively, and maintains a priority queue to efficiently find the
  * next vertex to add to the MST.
+ *  @par Time complexity
+ *  O(E * log(V)), where V is the number of vertexes and E the number of edges in the graph.
  */
 template <class T>
 void Graph<T>::prim() {
@@ -839,6 +843,8 @@ void Graph<T>::prim() {
  *
  * @param v The starting vertex for the preorder traversal.
  * @param path The queue to store the vertices in the order of traversal.
+ * @par Time complexity
+ * O(E + V), where V is the number of vertexes and E the number of edges in the graph.
  */
 template <class T>
 void Graph<T>::preorderTraversal(Vertex<T> *v, std::queue<Vertex<T> *> &path) {
@@ -862,6 +868,8 @@ void Graph<T>::preorderTraversal(Vertex<T> *v, std::queue<Vertex<T> *> &path) {
  *
  * @param path A queue to store the vertices in the order of traversal.
  * @return The total distance of the TSP approximation using the Triangular Approximation Method.
+ * @par Time complexity
+ * O(E * log(V)), where V is the number of vertexes and E the number of edges in the graph.
  */
 template <class T>
 double Graph<T>::triangularApproximation(std::queue<Vertex<T>*> &path) {
@@ -898,6 +906,8 @@ double Graph<T>::triangularApproximation(std::queue<Vertex<T>*> &path) {
  *
  * @param path Vector to store the vertices in the order of the TSP path.
  * @param distancia Reference to a variable to store the total distance of the TSP path.
+ * @par Time complexity
+ * O(V²), where V is the number of vertexes .
  */
 template <class T>
 void Graph<T>::nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distancia) {
@@ -934,6 +944,20 @@ void Graph<T>::nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distan
 
     path.push_back(getVertexSet().front());
 }
+/**
+ * @brief Computes an approximate solution to the Traveling Salesman Problem (TSP) using the Christofides algorithm.
+ *
+ * This function computes an approximate solution to the TSP for a given starting vertex using the Christofides algorithm:
+ * - Constructs a Minimum Spanning Tree (MST) using Prim's algorithm.
+ * - Computes a Minimum Weight Matching (MWM) for vertices with odd degree.
+ * - Constructs an Eulerian path by combining the MST and MWM.
+ * - Converts the Eulerian path into a Hamiltonian cycle and calculates the total distance.
+ * - Outputs the sequence of vertices visited in the tour to standard output.
+ *
+ * @param v The starting vertex for the TSP tour.
+ * @return double The total distance of the approximate TSP tour.
+ * O(V²), where V is the number of vertexes .
+ */
 template <class T>
 double Graph<T>::christofidesTSP( Vertex<T> *v) {
     double dist = 0;
@@ -969,6 +993,8 @@ double Graph<T>::christofidesTSP( Vertex<T> *v) {
  *
  * @param path A queue to store the vertices in the order they are visited in the Eulerian path.
  * @param v The starting vertex for the Eulerian path.
+ * @par Time complexity
+ * O(E), where E is the number of Edges in the graph .
  */
 template <class T>
 void Graph<T>::eulerianPath(std::queue<Vertex<T> *> &path, Vertex<T>* v) {
@@ -981,8 +1007,16 @@ void Graph<T>::eulerianPath(std::queue<Vertex<T> *> &path, Vertex<T>* v) {
         }
     }
 }
-
-
+/**
+ * @brief Finds all vertices in the graph with odd degree.
+ *
+ * This function calculates the degree of each vertex in the graph and returns
+ * a vector containing all vertices with an odd degree.
+ *
+ * @return std::vector<Vertex<T>*> A vector containing all vertices with odd degree.
+ * @par Time complexity
+ * O(E + V), where V is the number of vertexes and E the number of edges in the MSTgraph.
+ */
 template <class T>
 std::vector<Vertex<T>*> Graph<T>::getOdds(){
     std::vector<Vertex<T>*> odds;
@@ -1003,7 +1037,15 @@ std::vector<Vertex<T>*> Graph<T>::getOdds(){
     }
     return odds;
 }
-
+/**
+ * @brief Finds the nearest adjacent edge to this vertex.
+ *
+ * This function iterates through all the adjacent edges and finds the one with the minimum weight.
+ *
+ * @return Edge<T>* A pointer to the edge with the minimum weight adjacent to this vertex.
+ * @par Time complexity
+ * O(E), where E is the number od adj edges of the vertice.
+ */
 template <class T>
 Edge<T>* Vertex<T>::getNearest() const {
     double minwei = INF;
@@ -1016,6 +1058,13 @@ Edge<T>* Vertex<T>::getNearest() const {
     }
     return selectedEdge;
 }
+/**
+ * @brief Computes the Minimum Weight Matching (MWM) for the odd degree vertices in the graph.
+ *
+ * This function finds all vertices with an odd degree, and pairs them to create a Minimum Weight Matching (MWM)
+ * using a heuristic approach. It updates the MST (Minimum Spanning Tree) with these new edges.
+ * O(V²), where V is the number of vertexes.
+ */
 template <class T>
 void Graph<T>::mwm() {
     auto odds = getOdds();
@@ -1027,13 +1076,28 @@ void Graph<T>::mwm() {
         vertice = odds.erase(vertice);
     }
 }
+/**
+ * @brief Constructs a Hamiltonian cycle from a given path of vertices.
+ *
+ * This function constructs a Hamiltonian cycle from a given path of vertices
+ * and returns it as a vector of vertices.
+ *
+ * @param path A queue containing the vertices in the order of the Hamiltonian path.
+ * @return std::vector<Vertex<T>*> A vector representing the vertices in the Hamiltonian cycle.
+ * @par Time complexity
+ * O(V), where V is the number of vertexes in the graph
+ */
 template <class T>
 std::vector<Vertex<T>* > Graph<T>::hamiltonian_cycle(std::queue<Vertex<T>*> path){
+    for (auto v: vertexSet)
+        v->setVisited(false);
     std::vector<Vertex<T> *> vertices;
+    Vertex<T>* current;
     while (!path.empty()){
-        auto it = std::find(vertices.begin(), vertices.end(), path.front());
-        if (it ==vertices.end()){
-            vertices.push_back(path.front());
+        current = path.front();
+        if (!current->isVisited()){
+            current->setVisited(true);
+            vertices.push_back(current);
         }
         path.pop();
     }
