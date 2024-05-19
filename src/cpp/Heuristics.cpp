@@ -23,6 +23,7 @@ void Heuristics::backtracking_algorithm() {
     solution_cost = INF;
     path.push_back(vertex->getInfo());
     vertex->setVisited(true);
+    vertex->getAdj().front();
     auto start = std::chrono::high_resolution_clock::now();
     graph.tsp_backtracking(path,solution,solution_cost ,current_cost);
     auto end = std::chrono::high_resolution_clock::now();
@@ -50,7 +51,21 @@ void Heuristics::triangular_approximation_heuristic() {
     }
     cout << "\nThe cost is: " << dist << endl;
     cout << "Elapsed time: " << duration.count() << " ms" << endl;
+}
+void Heuristics::other_heuristic() {
+    for (auto& vertex : graph.getVertexSet()) {
+        vertex->setVisited(false);
+    }
+    std::vector<Vertex<int>*> path;
+    auto start = std::chrono::high_resolution_clock::now();
+    double dist;
+    graph.nearestNeighborTSP(path,dist);
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+    for(auto v : path){
+        cout << v->getInfo() << "->" ;
 
-
-
+    }
+    cout << "\nThe cost is: " << dist << endl;
+    cout << "Elapsed time: " << duration.count() << " ms" << endl;
 }

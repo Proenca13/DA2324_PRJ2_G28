@@ -153,7 +153,7 @@ public:
     std::vector<T> topsort() const;
     void tsp_backtracking(std::vector<int>& path,std::vector<int>& soltuion,double& solution_cost,double current_cost);
     double triangularApproximation(std::queue<Vertex<T>*> &path);
-    void nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distance,std::vector<Vertex<T>*>& cluster_vertices);
+    void nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distancia);
     double Clustering(const std::vector<Vertex<T>*>& nodes, int k);
     void prim();
     void preorderTraversal(Vertex<T> *v, std::queue<Vertex<T> *> &path);
@@ -824,23 +824,19 @@ double Graph<T>::triangularApproximation(std::queue<Vertex<T>*> &path) {
 
 }
 template <class T>
-void Graph<T>::nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distance,std::vector<Vertex<T>*>& cluster_vertices) {
-    distance = 0;
-    if (cluster_vertices.empty()) return;
-
-    for (auto v : cluster_vertices) {
-        v->setVisited(false);
-    }
-    Vertex<T>* currentVertex = cluster_vertices.front();
+void Graph<T>::nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distancia) {
+    distancia = 0;
+    if (getVertexSet().empty()) return;
+    Vertex<T>* currentVertex = findVertex(0);
     currentVertex->setVisited(true);
     while (true) {
+        path.push_back(currentVertex);
         double minDist = INF;
         Vertex<T>* nextVertex = nullptr;
-
         for (auto e : currentVertex->getAdj()) {
             Vertex<T>* neighbor = e->getDest();
             if (!neighbor->isVisited()) {
-                double current_dist = e->getDistance();
+                double current_dist = Haversine(currentVertex->getLat(),currentVertex->getLon(),neighbor->getLat(),neighbor->getLon());
                 if (current_dist < minDist) {
                     minDist = current_dist;
                     nextVertex = neighbor;
@@ -849,12 +845,18 @@ void Graph<T>::nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distan
         }
 
         if (nextVertex == nullptr) break;
-
         nextVertex->setVisited(true);
-        distance += minDist;
-        path.push_back(nextVertex);
+        distancia += minDist;
         currentVertex = nextVertex;
     }
+    for (auto e : currentVertex->getAdj()) {
+        if (e->getDest() == getVertexSet().front()) {
+            distancia += Haversine(e->getOrig()->getLat(),e->getOrig()->getLon(),e->getDest()->getLat(),e->getDest()->getLon());
+            break;
+        }
+    }
+
+    path.push_back(getVertexSet().front());
 }
 
 

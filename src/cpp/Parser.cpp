@@ -80,7 +80,7 @@ Graph<int> Parser::loadRealWordGraph(string& edgesPath,string& nodesPath){
             graph.addVertex(destino);
         }
         vertexhash[origem]->addEdge(vertexhash[destino],distancia);
-        vertexhash[origem]->addEdge(vertexhash[destino],distancia);
+        vertexhash[destino]->addEdge(vertexhash[origem],distancia);
     }
     return graph;
 }

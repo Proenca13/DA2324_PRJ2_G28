@@ -128,6 +128,7 @@ void Menu::Main_Menu() {
                 heuristics.triangular_approximation_heuristic();
                 break;
             case 3:
+                heuristics.other_heuristic();
                 break;
             case 4:
                 break;
