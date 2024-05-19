@@ -57,10 +57,16 @@ Graph<int> Parser::loadExtraGraph(string& edgesPath, string& nodesPath){
         ss.ignore(1);
         ss >> distancia;
         ss.ignore(1);
-        vertexhash.insert({origem,new Vertex<int>(origem)});
-        graph.addVertex(origem);
-        vertexhash.insert({destino,new Vertex<int>(destino)});
-        graph.addVertex(destino);
+        Vertex<int>* origem_ver = new Vertex<int> (origem);
+        if(vertexhash.find(origem) == vertexhash.end()){
+            vertexhash.insert({origem,origem_ver});
+            graph.vertexSet.push_back(origem_ver);
+        }
+        Vertex<int>* destino_ver = new Vertex<int> (destino);
+        if(vertexhash.find(destino) == vertexhash.end()){
+            vertexhash.insert({destino,destino_ver});
+            graph.vertexSet.push_back(destino_ver);
+        }
         vertexhash[origem]->addEdge(vertexhash[destino],distancia);
         vertexhash[destino]->addEdge(vertexhash[origem],distancia);
     }
@@ -75,8 +81,8 @@ Graph<int> Parser::loadExtraGraph(string& edgesPath, string& nodesPath){
         ss.ignore(1);
         ss >> lat;
         ss.ignore(1);
-        graph.findVertex(id)->setLat(lat);
-        graph.findVertex(id)->setLon(lon);
+        vertexhash[id]->setLat(lat);
+        vertexhash[id]->setLon(lon);
     }
     return graph;
 }

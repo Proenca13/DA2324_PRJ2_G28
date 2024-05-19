@@ -156,7 +156,6 @@ public:
     void tsp_backtracking(std::vector<int>& path,std::vector<int>& soltuion,double& solution_cost,double current_cost);
     double triangularApproximation(std::queue<Vertex<T>*> &path);
     void nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distancia);
-    double Clustering(const std::vector<Vertex<T>*>& nodes, int k);
     void prim();
     void preorderTraversal(Vertex<T> *v, std::queue<Vertex<T> *> &path);
     protected:
@@ -178,10 +177,7 @@ void deleteMatrix(double **m, int n);
 
 template <class T>
 Vertex<T>::Vertex(T in): info(in) {}
-/*
- * Auxiliary function to add an outgoing edge to a vertex (this),
- * with a given destination vertex (d) and edge weight (w).
- */
+
 template <class T>
 Edge<T> * Vertex<T>::addEdge(Vertex<T> *d, double w) {
     auto newEdge = new Edge<T>(this, d, w);
@@ -860,6 +856,8 @@ void Graph<T>::nearestNeighborTSP(std::vector<Vertex<T> *> &path, double &distan
 
     path.push_back(getVertexSet().front());
 }
+
+
 
 
 
